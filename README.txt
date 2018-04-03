@@ -1,0 +1,1 @@
+Version en desarrollo, hay distintas pruebas dentro de lo que viene siendo este juego

@@ -1,11 +1,6 @@
 package juego1;
 
 import java.awt.*;
-
-
-
-
-
 import java.net.*;
 import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
@@ -22,10 +17,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
@@ -110,14 +103,6 @@ public class Principal{
 			
 			System.out.println(x);
 			jugs = "";
-			
-			/**asd ads as dasd asd 
-               asd asd asd a sd
-              as dasd asd asd asd 
-              as daasd asd s s 
-              sd asd asd asd asd 
-              asd asd asd as dasd*/
-			
 			i = 0;
 			while((jugs = log.readLine()) != null) {//no entra al bucle por algo
 				
@@ -150,14 +135,6 @@ public class Principal{
 			
 			audio = new AudioStream(in);
 			
-			/**escritura archivos**/
-			
-			//fw = new FileWriter("src/log.txt");
-			
-			//bw = new BufferedWriter(fw);
-			
-			//bw.write("Hola");
-			
 		}catch(IOException e) {
 			
 			System.err.println("No se puede sacar el archivo");
@@ -171,115 +148,61 @@ public class Principal{
 
 //fin principal
 class Ventana extends JFrame{
-	
-	
 	/**DIMENSIONES DE LA PANTALLA**/
-	private Toolkit dimensiones = Toolkit.getDefaultToolkit();
-	
-	protected Toolkit config = Toolkit.getDefaultToolkit();
-	
-	Dimension dimension = dimensiones.getScreenSize();
-	
-	private int PantallaAlto = (int)dimension.getHeight(), PantallaAncho = (int)dimension.getWidth();
-	
-	public int PantallaDimAlto = 1080, PantallaDimAncho = 1920;
-	
+	private Toolkit dimensiones = Toolkit.getDefaultToolkit();	
+	protected Toolkit config = Toolkit.getDefaultToolkit();	
+	Dimension dimension = dimensiones.getScreenSize();	
+	private int PantallaAlto = (int)dimension.getHeight(), PantallaAncho = (int)dimension.getWidth();	
+	public int PantallaDimAlto = 1080, PantallaDimAncho = 1920;	
 	//private JPanel contador, menu1,jugar;
-	private static String presionaParaComenzar = "Pulsa en la pantalla para empezar!";
-	
-	private static boolean comenzar = true;
-	
-	private static int posJugX,posJugY;//posicion del jugador
-	
+	private static String presionaParaComenzar = "Pulsa en la pantalla para empezar!";	
+	private static boolean comenzar = true;	
+	private static int posJugX,posJugY;//posicion del jugador	
 	private int posDibX, posDibY;//posicion del recorrido para dibujar
-	
-	private int posIniPX= 1;
-	
-	private int posIniPY =5;
-	
-	protected int posPanRegX = 20 , posPanRegY = 140, dimAlReg = 290, dimAnReg = 324;//dimensiones del registro // 20 140 290  324
-	    
-	ImageIcon iconoCursor1 = new ImageIcon("scr/img/cursor1.png");//imagen del cursor 
-	
-	protected ImageIcon imgCuenta;
-	
-	protected Cursor cursorporDefecto, cursorPD2;//cursor en la pagina por defecto
-	
-	private Botones botones;
-	
-	private JButton salir, iniciar, record , menuPpal,guardar, volver, volver1, volver2,ajustes, ajustes1, volver5, nivelTres; //botones del menu
-	
-	private JButton rojo, cyan, azul, gris, registrarse, borrar, conectarse, menuReg, idiomas;
-	
+	private int posIniPX= 1;	
+	private int posIniPY =5;	
+	protected int posPanRegX = 20 , posPanRegY = 140, dimAlReg = 290, dimAnReg = 324;//dimensiones del registro // 20 140 290  324	    
+	ImageIcon iconoCursor1 = new ImageIcon("scr/img/cursor1.png");//imagen del cursor 	
+	protected ImageIcon imgCuenta;	
+	protected Cursor cursorporDefecto, cursorPD2;//cursor en la pagina por defecto	
+	private Botones botones;	
+	private JButton salir, iniciar, record , menuPpal,guardar, volver, volver1, volver2,ajustes, ajustes1, volver5, nivelTres; //botones del menu	
+	private JButton rojo, cyan, azul, gris, registrarse, borrar, conectarse, menuReg, idiomas;	
 	private Menu menu;
-	
-	protected NivelDos nivel2; //nivel dos, clase externa
-	
-	private Ajustes Ajustes;
-	
-	private Juego juego; 
-	
-	private Contador Contador;
-	
-	private Estadisticas estadisticas;
-	
-	private EstTabla estTabla;
-	
-	private Registrar registrar;
-	
-	private AjustesGeneral AjustesGeneral;
-	
-	protected JPanel pan;
-	
-	private Image icono, laberinto , Rojo, Gris, Azul, Cyan,iconoJuego;
-	
-	public Image skinDiablo1, cursorXD, cursorInvisible;
-	
-    protected static Icon iconoRegistrar, luna;
-	
-	private JTextArea usuario, usuario2;//usuario en la pagina ppal para conectarse
-	
-	private JPasswordField contra, repContra, contraEntrar;//contraseñas para entrar desde la pag ppal
-
-	private String usu = "Introduce tu usuario";
-	
-	protected String nombreDelUsuario = "";
-	
-	private String contrasenya = "y la contraseña";
-	
-	private boolean menuRegistro, tirarMisil, arriba = false, abajo = false;
-	
-	protected boolean iniCrono = false;
-	
-	protected score scor;
-	
-	private Contador1 hilo;  
-	
-	private Thread hiloPajaro;//declaro el hilo del pajaro
-	
-	private Hilo2 cn;
-	
-	private Hilo2Ave cAve;
-	
-	private BienvenidaJug hilo2;
-	
-	private panBienvenida pan1;
-	
+	protected NivelDos nivel2; //nivel dos, clase externa	
+	private Ajustes Ajustes;	
+	private Juego juego; 	
+	private Contador Contador;	
+	private Estadisticas estadisticas;	
+	private EstTabla estTabla;	
+	private Registrar registrar;	
+	private AjustesGeneral AjustesGeneral;	
+	protected JPanel pan;	
+	private Image icono, laberinto , Rojo, Gris, Azul, Cyan,iconoJuego;	
+	public Image skinDiablo1, cursorXD, cursorInvisible;	
+        protected static Icon iconoRegistrar, luna;	
+	private JTextArea usuario, usuario2;//usuario en la pagina ppal para conectarse	
+	private JPasswordField contra, repContra, contraEntrar;//contraseÃ±as para entrar desde la pag ppal
+	private String usu = "Introduce tu usuario";	
+	protected String nombreDelUsuario = "";	
+	private String contrasenya = "y la contraseÃ±a";	
+	private boolean menuRegistro, tirarMisil, arriba = false, abajo = false;	
+	protected boolean iniCrono = false;	
+	protected score scor;	
+	private Contador1 hilo;  	
+	private Thread hiloPajaro;//declaro el hilo del pajaro	
+	private Hilo2 cn;	
+	private Hilo2Ave cAve;	
+	private BienvenidaJug hilo2;	
+	private panBienvenida pan1;	
 	private boolean runThread = false;
-	
-	private Color colorRojo = new Color(169,50,38);
-	  
-	private Color colorMorado = new Color(89,10,144);
-	
-	private int ContadorMin = 0, ContadorSeg = 0, ContadorHora; 
-	
-	private int x1 = 50, y1 = - 100;//posicion inicial del panel 
-	
+	private Color colorRojo = new Color(169,50,38);	  
+	private Color colorMorado = new Color(89,10,144);	
+	private int ContadorMin = 0, ContadorSeg = 0, ContadorHora;	
+	private int x1 = 50, y1 = - 100;//posicion inicial del panel 	
 	protected static String mensajito = "";
 	
-	
 	public static class Jugador{
-    	
   	  private String nomJug, contraJug;
   	  private int score;
   	  private Jugador[] jugadores;
@@ -333,14 +256,12 @@ class Ventana extends JFrame{
 	      }
 	     
   }
-	
 	/**ACTION LISTENER**/
-	
 	private class Botones2 extends AbstractAction{
 		
 		public Botones2(String nombre, Icon icono, Color color, int valor) {
 			
-            putValue(Action.NAME, nombre);
+                        putValue(Action.NAME, nombre);
 			
 			putValue(Action.SMALL_ICON, icono);
 			
@@ -359,7 +280,7 @@ class Ventana extends JFrame{
 				
 			try {
 				
-			     Socket mail = new Socket(Inet4Address.getLocalHost().getHostAddress(), 6666); //creo mi socket//192.168.0.154
+			     Socket mail = new Socket(Inet4Address.getLocalHost().getHostAddress(), 6666); //creo mi socket
 			     
 			     System.out.println("aqui");
 			     
@@ -405,11 +326,11 @@ class Ventana extends JFrame{
 				
 				   System.out.println("  usuario: " + text2 + " y contra : " + contra1 + " y " + repcontra);
 				   
-				   //**COMPUEBA SI LAS CONTRASEÑAS COINCIDEN**//
+				   //**COMPUEBA SI LAS CONTRASEÃ‘AS COINCIDEN**//
 				   
 				   if(contra1.equals(repcontra)) {
 					   
-					   System.out.println("Las contraseñas coinciden");
+					   System.out.println("Las contraseÃ±as coinciden");
 					   
 					   boolean x =  Jugador.compruebaJug(text2, contra1);//Jugador.compruebaJug(text2, contra1);
 					   
@@ -427,7 +348,7 @@ class Ventana extends JFrame{
 				              repContra.setBackground(colorRojo);}
 				   }else {
 					   
-					   System.out.print("Las contraseñas no coinciden");
+					   System.out.print("Las contraseÃ±as no coinciden");
 					   
 				   }
 				
@@ -439,7 +360,7 @@ class Ventana extends JFrame{
 				
 			}else if(valor == 1) {
 				
-				System.out.println("Reiniciando contraseña");
+				System.out.println("Reiniciando contraseÃ±a");
 				
 				contra.setText(contrasenya);
 				
@@ -1124,7 +1045,7 @@ class Ventana extends JFrame{
 			
 			  add(usuario);
 			  
-			  g.drawString("Contraseña: ", 15, 100);
+			  g.drawString("ContraseÃ±a: ", 15, 100);
 			  
 			  contra.setFont(jug2);
 			  
@@ -1210,7 +1131,7 @@ class Ventana extends JFrame{
 			  
 			  add(usuario2);
 			  
-              g.drawString("Contraseña: ", 15, 260);
+              g.drawString("ContraseÃ±a: ", 15, 260);
 			  
 			  contraEntrar.setFont(jug2);
 			  
@@ -2075,7 +1996,7 @@ class Ventana extends JFrame{
 		
 		 public Estadisticas(){
 			 
-			     //añado cursor
+			     //aÃ±ado cursor
 			    setCursor(cursorporDefecto);
 			 
 			    setLayout(null);

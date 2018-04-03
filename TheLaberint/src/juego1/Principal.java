@@ -274,41 +274,14 @@ class Ventana extends JFrame{
 		}
 		
 		public void actionPerformed(ActionEvent e) {
-			/**PRUEBA SOCKETS**/
-			/**if(e.getSource().equals(registrarse)) {
-				
-				
-			try {
-				
-			     Socket mail = new Socket(Inet4Address.getLocalHost().getHostAddress(), 6666); //creo mi socket
-			     
-			     System.out.println("aqui");
-			     
-			     DataOutputStream salida = new DataOutputStream(mail.getOutputStream());
-			     System.out.println("aqui 1");
-			     
-			     salida.writeUTF(" hooola ");
-			     
-			     salida.close();
-			     
-			}catch(UnknownHostException s) {
-			         
-				  System.out.println("omg");
-				
-			}catch(IOException o){
-				System.out.println("omg2");
-			}
-			}
-			*/
-			/**fin prueba**/
 			int valor = (int)getValue("accion");
 			
 			if(valor == 0) {
 				System.out.println("boton uno funciona y valor " );
 				
-				//pide la primera ocontra
+				//pide la primera contra
 				try{
-					char[] texto  = contra.getPassword();
+				    char[] texto  = contra.getPassword();
 				
 				    char[] textRep = repContra.getPassword();
 								
@@ -433,13 +406,13 @@ class Ventana extends JFrame{
 					System.out.println("entra");
 			}else if (valor == 5) {
 				
-                    menu.setVisible(true);
+                                    menu.setVisible(true);
 				
 				    juego.setVisible(false);
 				
 				    estadisticas.setVisible(false);
 				
-			     	estTabla.setVisible(false);
+			       	    estTabla.setVisible(false);
 				
 				    Contador.setVisible(false);
 				
@@ -455,7 +428,7 @@ class Ventana extends JFrame{
 				
 				    estadisticas.setVisible(false);
 				
-			     	estTabla.setVisible(false);
+			     	    estTabla.setVisible(false);
 				
 				    Contador.setVisible(false);
 				
@@ -463,25 +436,17 @@ class Ventana extends JFrame{
 				    
 				    AjustesGeneral.setVisible(false);
 				    
-                    //Teclado2 t = new Teclado2()
-				    
-				    //nivel2.addKeyListener(t);
-				    
-					cn = new Hilo2();
+			            cn = new Hilo2();
 					
-					cAve = new Hilo2Ave();
+				    cAve = new Hilo2Ave();
 				    
-					cn.start();
+			            cn.start();
 					
-					cAve.start();
+				    cAve.start();
 				    
 				    nivel2.setVisible(true);
-				    
-				    
-				   
 			}
-		}
-		
+		}		
 	}
 	
 	private class Botones extends AbstractAction implements ActionListener{
@@ -512,7 +477,6 @@ class Ventana extends JFrame{
 				
 				nivel2.setVisible(false);
 				
-				
 				posIniPX = 1;
 				
 				posIniPY = 5;
@@ -521,7 +485,7 @@ class Ventana extends JFrame{
 				
 			}else if(botonPulsado.equals(record)){
 				
-                menu.setVisible(false);
+                                menu.setVisible(false);
 				
 				juego.setVisible(false);
 				
@@ -544,7 +508,7 @@ class Ventana extends JFrame{
 				System.exit(0);
 			}else if(botonPulsado.equals(menuPpal) || botonPulsado.equals(volver)){
 				
-                menu.setVisible(true);
+                                menu.setVisible(true);
 				
 				juego.setVisible(false);
 				
@@ -566,7 +530,7 @@ class Ventana extends JFrame{
 				
 			}else if(botonPulsado.equals(volver1)){
 				
-                menu.setVisible(false);
+                                menu.setVisible(false);
 				
 				juego.setVisible(false);
 				
@@ -586,21 +550,11 @@ class Ventana extends JFrame{
 				/**TODO guadado de la partida actual**/
 				System.out.println("Juego guardado");
 				
-				/*hilo = new Contador1(Contador);
-				
-				hilo.start();
-				
-				runThread = true;
-				/**TODO**/
-				//Juego joc = new Juego();
-				
 				int x = 10, y= 20; 
-				
-				//dibCuadro(x + 10, y + 10);
 				
 			}else if(botonPulsado.equals(ajustes)) {
 				
-                menu.setVisible(false);
+                                menu.setVisible(false);
 				
 				juego.setVisible(false);
 				
@@ -638,10 +592,10 @@ class Ventana extends JFrame{
 				System.out.println("registrando");
 			}else if(botonPulsado.equals(borrar)) {
 			    
-			    System.out.println("hola");
+			        System.out.println("hola");
 			}else if(botonPulsado.equals(ajustes1)) {
 				
-                menu.setVisible(false);
+                                menu.setVisible(false);
 				
 				juego.setVisible(false);
 				
@@ -654,11 +608,9 @@ class Ventana extends JFrame{
 				Ajustes.setVisible(true);
 				
 				AjustesGeneral.setVisible(false);
-				
-				
-				
+	
 			}else if(botonPulsado.equals(volver5)) {
-                menu.setVisible(false);
+                                menu.setVisible(false);
 				
 				juego.setVisible(false);
 				
@@ -676,7 +628,7 @@ class Ventana extends JFrame{
 				
 			}else if(botonPulsado.equals(nivelTres)) {
 				
-                menu.setVisible(false);
+                                menu.setVisible(false);
 				
 				juego.setVisible(false);
 				
@@ -702,15 +654,15 @@ class Ventana extends JFrame{
     	  public void run(){
     		  try {
     			  for(int i =0; i < 100; i ++) {
-    				  pan1 = new panBienvenida();
+    			      pan1 = new panBienvenida();
     				  
-    				  pan1.setBounds(x1,y1,400,50);
+    		              pan1.setBounds(x1,y1,400,50);
     				  
-    				  pan1.setVisible(true);
+    	                      pan1.setVisible(true);
     				  
-    				  menu.add(pan1);
+    			      menu.add(pan1);
     				  
-    				  menu.repaint();
+    			      menu.repaint();
     				  
     			      Thread.sleep(14);
     			      
@@ -726,28 +678,29 @@ class Ventana extends JFrame{
     			      
     			      pan1.setVisible(true);
 				  
-				      menu.add(pan1);
+			      menu.add(pan1);
 				  
-				      menu.repaint();
+			      menu.repaint();
 				      
-    			     Thread.sleep(4000);
+    			      Thread.sleep(4000);
     			     
     			  for(int i =0; i < 100; i ++) {
-    				  menu.remove(pan1);
+    			      menu.remove(pan1);
     				  
-       				  pan1 = new panBienvenida();
+       			      pan1 = new panBienvenida();
        				  
-       				  pan1.setBounds(x1,y1,400,50);
+       			      pan1.setBounds(x1,y1,400,50);
        				  
-       				  pan1.setVisible(true);
+       			      pan1.setVisible(true);
        				  
-       				  menu.add(pan1);
+       			      menu.add(pan1);
        				  
-       				  menu.repaint();
+       			      menu.repaint();
        				  
        			      Thread.sleep(5);
        			      
        			      menu.remove(pan1);
+				  
        			      System.out.print(i + "  ");
        			      
        			      y1--;
@@ -845,8 +798,7 @@ class Ventana extends JFrame{
 	public Ventana() {
 		
 		try {
-			
-			iconoJuego = ImageIO.read(new File("src/img/portada.png"));//icono nuevo del juego
+		    iconoJuego = ImageIO.read(new File("src/img/portada.png"));//icono nuevo del juego
 			
 		    //icono = ImageIO.read(new File("src/suerte.png"));//icono antiguo del juego
 		    
@@ -1352,13 +1304,13 @@ class Ventana extends JFrame{
 			
 			g.drawString("EL LABERINTO", 330, 100);//330
 			
-            g.setColor(new Color(18,123,36));
+                        g.setColor(new Color(18,123,36));
             
-            Font fuente1 = new Font("Impact", Font.BOLD , 65);//55
+                        Font fuente1 = new Font("Impact", Font.BOLD , 65);//55
             
-			g.drawString("EL LABERINTO", 328, 100);//328
+			g.drawString("EL LABERINTO", 328, 100);
 			
-		}//fin paint component
+		}//fin paintComponent
 		
 		/**mouse listener del menu**/
         private class Rata extends MouseAdapter{
@@ -1380,13 +1332,11 @@ class Ventana extends JFrame{
         		  
         		  //System.out.println("Estas fuera del panel");
         		  
-                  //posPanRegX += 15;//efecto del aumento
+                          //posPanRegX += 15;//efecto del aumento
         		  
-        		 // posPanRegY -= 15;
+        		  // posPanRegY -= 15;
         		  
-        		  //repaint();
-        		  
-        		  
+        		  //repaint();  
         	  }
         }
        
@@ -1401,21 +1351,21 @@ class Ventana extends JFrame{
 			   
 			setBackground(new Color(89,10,144));
 			   
-		    setBounds(0,0,PantallaDimAncho/2,PantallaDimAlto/2);
+		       setBounds(0,0,PantallaDimAncho/2,PantallaDimAlto/2);
 		    
-		    volver2 = new JButton(new Botones2("Volver",null, null, 5));
+		       volver2 = new JButton(new Botones2("Volver",null, null, 5));
 			   
-		    volver2.setBounds(325, 415 - x, 355 , 60);
+		       volver2.setBounds(325, 415 - x, 355 , 60);
 			   
-		    volver2.setBackground(new Color(79,4,127));
+		       volver2.setBackground(new Color(79,4,127));
 				
-		    Font jug = new Font("Impact", Font.BOLD, 40);
+		       Font jug = new Font("Impact", Font.BOLD, 40);
 				
-		    volver2.setFont(jug);
+		        volver2.setFont(jug);
 				
-		    volver2.setForeground(new Color(31,195,14));
+		        volver2.setForeground(new Color(31,195,14));
 			   
-		    //volver1.addActionListener(botones);
+		        //volver1.addActionListener(botones);
 			   
 			volver2.setVisible(true);
 			
@@ -1425,26 +1375,25 @@ class Ventana extends JFrame{
 			
 			ajustes1.setBackground(new Color(79,4,127));
 				
-		    ajustes1.setFont(jug);
+		        ajustes1.setFont(jug);
 				
-		    ajustes1.setForeground(new Color(31,195,14));
+		        ajustes1.setForeground(new Color(31,195,14));
 			   
-		    ajustes1.addActionListener(botones);
+		        ajustes1.addActionListener(botones);
 			   
 			ajustes1.setVisible(true);
 			
 			idiomas = new JButton(new Botones2("Idiomas", null, null, 6));
 			
-            idiomas.setBounds(325, 235 - x, 355 , 60);
+                        idiomas.setBounds(325, 235 - x, 355 , 60);
 			
-            idiomas.setBackground(new Color(79,4,127));
+                        idiomas.setBackground(new Color(79,4,127));
 				
-            idiomas.setFont(jug);
+                        idiomas.setFont(jug);
 				
-            idiomas.setForeground(new Color(31,195,14));
+                        idiomas.setForeground(new Color(31,195,14));
             
-            idiomas.setVisible(true);
-           
+                        idiomas.setVisible(true);
 
 			add(volver2);
 			
@@ -1464,15 +1413,13 @@ class Ventana extends JFrame{
 			
 			g.setFont(fuente);
 			
-			//g.setColor(new Color);
-			
 			g.setColor(new Color(72,179,25));
 			
 			g.drawString("EL LABERINTO", 330, 100);//330
 			
-            g.setColor(new Color(18,123,36));
+                        g.setColor(new Color(18,123,36));
             
-            Font fuente1 = new Font("Impact", Font.BOLD , 65);//55
+                        Font fuente1 = new Font("Impact", Font.BOLD , 65);//55
             
 			g.drawString("EL LABERINTO", 328, 100);//328
 			
@@ -1722,8 +1669,6 @@ class Ventana extends JFrame{
 				   ContadorSeg = 0;
 				   
 			   }
-			   
-			   
 			   /*if(iniCrono == true) {
 				   
 				   try {
@@ -2089,9 +2034,6 @@ class Ventana extends JFrame{
 	 }
 	 
 	 /**NIVEL 2**/
-	 /*tiraMisil misil = new tiraMisil();
-                	
-                	   add(misil);**/
 	 class NivelDos extends JPanel{
 		   private int municion = 10;
 		   public boolean puedeLanzar;//declaro tiempo de lanzamiento
@@ -2128,15 +2070,6 @@ class Ventana extends JFrame{
              	    nivel2.add(misil);
 				}
 			}
-			/*
-			public void actualizar() {
-				
-               // movimientoBomba();
-				
-				//movimientoAve();
-				
-			}
-			*/
 			//protected static Rectangle2D suelo;
 			
 			protected int x =0;
@@ -2213,14 +2146,7 @@ class Ventana extends JFrame{
 				
 				g.setColor(Color.GREEN);
 				
-				//g.fillRect(500, 200, 20, 20);
-				//g.fillRect(550, 200, 40, 40);
-				
-				//g.fillRect(0, 450, 2000, 50);
-				  
-				//g.setColor(Color.black);
-				
-                g.fill(suelo());
+                                g.fill(suelo());
                 
 				g.drawImage(suelo, x,405 , 2000, 100, null);
 				
@@ -2238,33 +2164,17 @@ class Ventana extends JFrame{
 					g.drawImage(calavera, 70 - x, 5, 50, 50, null);
 				}			
 				
-				//g.drawImage(bomba, 10 - x, 10, 50, 50, null);
-				
-				//g.drawImage(bomba, 60 - x, 10, 50, 50, null);
-				
-				//g.drawImage(bomba, 110 - x, 10, 50, 50, null);
-				
 				g.setFont(new Font("SWGothe", Font.BOLD, 35));//Lucida Handwriting
 				
 				g.drawImage(caza, 200 -x, posAve,200, 150, null);//ave
 				
 				g.setColor(Color.red);
-				
-				//actualizar();
+
 				movimientoAve();
 				
 				movimientoBomba();
 				
 				g.drawString("Municion", 0 - x, 80);
-				
-				/**if(soltarBomba) {
-					
-					pos = posAve;
-					
-					g.drawRect(x, pos, 50, 50);
-					
-					soltarBomba = false;
-				}*/
 			}
 			protected class ContadorVidaMisil extends Thread{
 				public ContadorVidaMisil() {
@@ -2543,33 +2453,16 @@ class Archivo {
 			
 		}catch(IOException e) {
 			
-			System.err.println("No se puede sacar el archivo");
+			System.err.println("No se ENCUENTRA el archivo");
 		}
 		
 	}
 	
 	
 }
-class Info extends JPanel{
-	
-	public Info() {}
-	
-	public static Info info(String descripcio, int posX, int posY) {
-		
-		Info panel = new Info();
-		
-		panel.setLayout(null);
-		
-		panel.setBounds(posX , posY, 50 , 70);
-		
-		panel.setVisible(true);
-		
-		return panel;
-	}
-}
 
 //clase del idioma
-
+/**TODO*/
 
 class Idioma{
 	
@@ -2579,7 +2472,7 @@ class Idioma{
 	}	
 }
 //socket
-
+/**TODO*/
 class mail{
 	
 	public mail() {
@@ -2611,7 +2504,7 @@ class Servidor extends Thread{
 	
 	public void run() {
 		
-		System.out.println("Se acepto la coneccion nueva");
+		System.out.println("Se acepto la coneccion nueva al server");
 		
 		try {
 			

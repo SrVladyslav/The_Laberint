@@ -1029,7 +1029,7 @@ class Ventana extends JFrame{
               
               add(repContra);
 			  
-			  registrarse = new JButton(new Botones2("Registrarse",null,null,0));
+			  registrarse = new JButton(new Botones2("<html><i>Registrarse</i></html>",null,null,0));
 			  
 			  registrarse.setFont(jug2);
 			  

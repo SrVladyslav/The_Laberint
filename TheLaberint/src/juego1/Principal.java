@@ -1,11 +1,6 @@
 package juego1;
 
 import java.awt.*;
-
-
-
-
-
 import java.net.*;
 import java.awt.event.*;
 import java.awt.geom.Rectangle2D;
@@ -22,10 +17,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
-
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
@@ -110,14 +103,6 @@ public class Principal{
 			
 			System.out.println(x);
 			jugs = "";
-			
-			/**asd ads as dasd asd 
-               asd asd asd a sd
-              as dasd asd asd asd 
-              as daasd asd s s 
-              sd asd asd asd asd 
-              asd asd asd as dasd*/
-			
 			i = 0;
 			while((jugs = log.readLine()) != null) {//no entra al bucle por algo
 				
@@ -150,14 +135,6 @@ public class Principal{
 			
 			audio = new AudioStream(in);
 			
-			/**escritura archivos**/
-			
-			//fw = new FileWriter("src/log.txt");
-			
-			//bw = new BufferedWriter(fw);
-			
-			//bw.write("Hola");
-			
 		}catch(IOException e) {
 			
 			System.err.println("No se puede sacar el archivo");
@@ -171,115 +148,61 @@ public class Principal{
 
 //fin principal
 class Ventana extends JFrame{
-	
-	
 	/**DIMENSIONES DE LA PANTALLA**/
-	private Toolkit dimensiones = Toolkit.getDefaultToolkit();
-	
-	protected Toolkit config = Toolkit.getDefaultToolkit();
-	
-	Dimension dimension = dimensiones.getScreenSize();
-	
-	private int PantallaAlto = (int)dimension.getHeight(), PantallaAncho = (int)dimension.getWidth();
-	
-	public int PantallaDimAlto = 1080, PantallaDimAncho = 1920;
-	
+	private Toolkit dimensiones = Toolkit.getDefaultToolkit();	
+	protected Toolkit config = Toolkit.getDefaultToolkit();	
+	Dimension dimension = dimensiones.getScreenSize();	
+	private int PantallaAlto = (int)dimension.getHeight(), PantallaAncho = (int)dimension.getWidth();	
+	public int PantallaDimAlto = 1080, PantallaDimAncho = 1920;	
 	//private JPanel contador, menu1,jugar;
-	private static String presionaParaComenzar = "Pulsa en la pantalla para empezar!";
-	
-	private static boolean comenzar = true;
-	
-	private static int posJugX,posJugY;//posicion del jugador
-	
+	private static String presionaParaComenzar = "Pulsa en la pantalla para empezar!";	
+	private static boolean comenzar = true;	
+	private static int posJugX,posJugY;//posicion del jugador	
 	private int posDibX, posDibY;//posicion del recorrido para dibujar
-	
-	private int posIniPX= 1;
-	
-	private int posIniPY =5;
-	
-	protected int posPanRegX = 20 , posPanRegY = 140, dimAlReg = 290, dimAnReg = 324;//dimensiones del registro // 20 140 290  324
-	    
-	ImageIcon iconoCursor1 = new ImageIcon("scr/img/cursor1.png");//imagen del cursor 
-	
-	protected ImageIcon imgCuenta;
-	
-	protected Cursor cursorporDefecto, cursorPD2;//cursor en la pagina por defecto
-	
-	private Botones botones;
-	
-	private JButton salir, iniciar, record , menuPpal,guardar, volver, volver1, volver2,ajustes, ajustes1, volver5, nivelTres; //botones del menu
-	
-	private JButton rojo, cyan, azul, gris, registrarse, borrar, conectarse, menuReg, idiomas;
-	
+	private int posIniPX= 1;	
+	private int posIniPY =5;	
+	protected int posPanRegX = 20 , posPanRegY = 140, dimAlReg = 290, dimAnReg = 324;//dimensiones del registro // 20 140 290  324	    
+	ImageIcon iconoCursor1 = new ImageIcon("scr/img/cursor1.png");//imagen del cursor 	
+	protected ImageIcon imgCuenta;	
+	protected Cursor cursorporDefecto, cursorPD2;//cursor en la pagina por defecto	
+	private Botones botones;	
+	private JButton salir, iniciar, record , menuPpal,guardar, volver, volver1, volver2,ajustes, ajustes1, volver5, nivelTres; //botones del menu	
+	private JButton rojo, cyan, azul, gris, registrarse, borrar, conectarse, menuReg, idiomas;	
 	private Menu menu;
-	
-	protected NivelDos nivel2; //nivel dos, clase externa
-	
-	private Ajustes Ajustes;
-	
-	private Juego juego; 
-	
-	private Contador Contador;
-	
-	private Estadisticas estadisticas;
-	
-	private EstTabla estTabla;
-	
-	private Registrar registrar;
-	
-	private AjustesGeneral AjustesGeneral;
-	
-	protected JPanel pan;
-	
-	private Image icono, laberinto , Rojo, Gris, Azul, Cyan,iconoJuego;
-	
-	public Image skinDiablo1, cursorXD, cursorInvisible;
-	
-    protected static Icon iconoRegistrar, luna;
-	
-	private JTextArea usuario, usuario2;//usuario en la pagina ppal para conectarse
-	
-	private JPasswordField contra, repContra, contraEntrar;//contraseñas para entrar desde la pag ppal
-
-	private String usu = "Introduce tu usuario";
-	
-	protected String nombreDelUsuario = "";
-	
-	private String contrasenya = "y la contraseña";
-	
-	private boolean menuRegistro, tirarMisil, arriba = false, abajo = false;
-	
-	protected boolean iniCrono = false;
-	
-	protected score scor;
-	
-	private Contador1 hilo;  
-	
-	private Thread hiloPajaro;//declaro el hilo del pajaro
-	
-	private Hilo2 cn;
-	
-	private Hilo2Ave cAve;
-	
-	private BienvenidaJug hilo2;
-	
-	private panBienvenida pan1;
-	
+	protected NivelDos nivel2; //nivel dos, clase externa	
+	private Ajustes Ajustes;	
+	private Juego juego; 	
+	private Contador Contador;	
+	private Estadisticas estadisticas;	
+	private EstTabla estTabla;	
+	private Registrar registrar;	
+	private AjustesGeneral AjustesGeneral;	
+	protected JPanel pan;	
+	private Image icono, laberinto , Rojo, Gris, Azul, Cyan,iconoJuego;	
+	public Image skinDiablo1, cursorXD, cursorInvisible;	
+        protected static Icon iconoRegistrar, luna;	
+	private JTextArea usuario, usuario2;//usuario en la pagina ppal para conectarse	
+	private JPasswordField contra, repContra, contraEntrar;//contraseÃ±as para entrar desde la pag ppal
+	private String usu = "Introduce tu usuario";	
+	protected String nombreDelUsuario = "";	
+	private String contrasenya = "y la contraseÃ±a";	
+	private boolean menuRegistro, tirarMisil, arriba = false, abajo = false;	
+	protected boolean iniCrono = false;	
+	protected score scor;	
+	private Contador1 hilo;  	
+	private Thread hiloPajaro;//declaro el hilo del pajaro	
+	private Hilo2 cn;	
+	private Hilo2Ave cAve;	
+	private BienvenidaJug hilo2;	
+	private panBienvenida pan1;	
 	private boolean runThread = false;
-	
-	private Color colorRojo = new Color(169,50,38);
-	  
-	private Color colorMorado = new Color(89,10,144);
-	
-	private int ContadorMin = 0, ContadorSeg = 0, ContadorHora; 
-	
-	private int x1 = 50, y1 = - 100;//posicion inicial del panel 
-	
+	private Color colorRojo = new Color(169,50,38);	  
+	private Color colorMorado = new Color(89,10,144);	
+	private int ContadorMin = 0, ContadorSeg = 0, ContadorHora;	
+	private int x1 = 50, y1 = - 100;//posicion inicial del panel 	
 	protected static String mensajito = "";
 	
-	
 	public static class Jugador{
-    	
   	  private String nomJug, contraJug;
   	  private int score;
   	  private Jugador[] jugadores;
@@ -333,14 +256,12 @@ class Ventana extends JFrame{
 	      }
 	     
   }
-	
 	/**ACTION LISTENER**/
-	
 	private class Botones2 extends AbstractAction{
 		
 		public Botones2(String nombre, Icon icono, Color color, int valor) {
 			
-            putValue(Action.NAME, nombre);
+                        putValue(Action.NAME, nombre);
 			
 			putValue(Action.SMALL_ICON, icono);
 			
@@ -353,41 +274,14 @@ class Ventana extends JFrame{
 		}
 		
 		public void actionPerformed(ActionEvent e) {
-			/**PRUEBA SOCKETS**/
-			/**if(e.getSource().equals(registrarse)) {
-				
-				
-			try {
-				
-			     Socket mail = new Socket(Inet4Address.getLocalHost().getHostAddress(), 6666); //creo mi socket//192.168.0.154
-			     
-			     System.out.println("aqui");
-			     
-			     DataOutputStream salida = new DataOutputStream(mail.getOutputStream());
-			     System.out.println("aqui 1");
-			     
-			     salida.writeUTF(" hooola ");
-			     
-			     salida.close();
-			     
-			}catch(UnknownHostException s) {
-			         
-				  System.out.println("omg");
-				
-			}catch(IOException o){
-				System.out.println("omg2");
-			}
-			}
-			*/
-			/**fin prueba**/
 			int valor = (int)getValue("accion");
 			
 			if(valor == 0) {
 				System.out.println("boton uno funciona y valor " );
 				
-				//pide la primera ocontra
+				//pide la primera contra
 				try{
-					char[] texto  = contra.getPassword();
+				    char[] texto  = contra.getPassword();
 				
 				    char[] textRep = repContra.getPassword();
 								
@@ -405,11 +299,11 @@ class Ventana extends JFrame{
 				
 				   System.out.println("  usuario: " + text2 + " y contra : " + contra1 + " y " + repcontra);
 				   
-				   //**COMPUEBA SI LAS CONTRASEÑAS COINCIDEN**//
+				   //**COMPUEBA SI LAS CONTRASEÃ‘AS COINCIDEN**//
 				   
 				   if(contra1.equals(repcontra)) {
 					   
-					   System.out.println("Las contraseñas coinciden");
+					   System.out.println("Las contraseÃ±as coinciden");
 					   
 					   boolean x =  Jugador.compruebaJug(text2, contra1);//Jugador.compruebaJug(text2, contra1);
 					   
@@ -427,7 +321,7 @@ class Ventana extends JFrame{
 				              repContra.setBackground(colorRojo);}
 				   }else {
 					   
-					   System.out.print("Las contraseñas no coinciden");
+					   System.out.print("Las contraseÃ±as no coinciden");
 					   
 				   }
 				
@@ -439,7 +333,7 @@ class Ventana extends JFrame{
 				
 			}else if(valor == 1) {
 				
-				System.out.println("Reiniciando contraseña");
+				System.out.println("Reiniciando contraseÃ±a");
 				
 				contra.setText(contrasenya);
 				
@@ -512,13 +406,13 @@ class Ventana extends JFrame{
 					System.out.println("entra");
 			}else if (valor == 5) {
 				
-                    menu.setVisible(true);
+                                    menu.setVisible(true);
 				
 				    juego.setVisible(false);
 				
 				    estadisticas.setVisible(false);
 				
-			     	estTabla.setVisible(false);
+			       	    estTabla.setVisible(false);
 				
 				    Contador.setVisible(false);
 				
@@ -534,7 +428,7 @@ class Ventana extends JFrame{
 				
 				    estadisticas.setVisible(false);
 				
-			     	estTabla.setVisible(false);
+			     	    estTabla.setVisible(false);
 				
 				    Contador.setVisible(false);
 				
@@ -542,25 +436,17 @@ class Ventana extends JFrame{
 				    
 				    AjustesGeneral.setVisible(false);
 				    
-                    //Teclado2 t = new Teclado2()
-				    
-				    //nivel2.addKeyListener(t);
-				    
-					cn = new Hilo2();
+			            cn = new Hilo2();
 					
-					cAve = new Hilo2Ave();
+				    cAve = new Hilo2Ave();
 				    
-					cn.start();
+			            cn.start();
 					
-					cAve.start();
+				    cAve.start();
 				    
 				    nivel2.setVisible(true);
-				    
-				    
-				   
 			}
-		}
-		
+		}		
 	}
 	
 	private class Botones extends AbstractAction implements ActionListener{
@@ -591,7 +477,6 @@ class Ventana extends JFrame{
 				
 				nivel2.setVisible(false);
 				
-				
 				posIniPX = 1;
 				
 				posIniPY = 5;
@@ -600,7 +485,7 @@ class Ventana extends JFrame{
 				
 			}else if(botonPulsado.equals(record)){
 				
-                menu.setVisible(false);
+                                menu.setVisible(false);
 				
 				juego.setVisible(false);
 				
@@ -623,7 +508,7 @@ class Ventana extends JFrame{
 				System.exit(0);
 			}else if(botonPulsado.equals(menuPpal) || botonPulsado.equals(volver)){
 				
-                menu.setVisible(true);
+                                menu.setVisible(true);
 				
 				juego.setVisible(false);
 				
@@ -645,7 +530,7 @@ class Ventana extends JFrame{
 				
 			}else if(botonPulsado.equals(volver1)){
 				
-                menu.setVisible(false);
+                                menu.setVisible(false);
 				
 				juego.setVisible(false);
 				
@@ -665,21 +550,11 @@ class Ventana extends JFrame{
 				/**TODO guadado de la partida actual**/
 				System.out.println("Juego guardado");
 				
-				/*hilo = new Contador1(Contador);
-				
-				hilo.start();
-				
-				runThread = true;
-				/**TODO**/
-				//Juego joc = new Juego();
-				
 				int x = 10, y= 20; 
-				
-				//dibCuadro(x + 10, y + 10);
 				
 			}else if(botonPulsado.equals(ajustes)) {
 				
-                menu.setVisible(false);
+                                menu.setVisible(false);
 				
 				juego.setVisible(false);
 				
@@ -717,10 +592,10 @@ class Ventana extends JFrame{
 				System.out.println("registrando");
 			}else if(botonPulsado.equals(borrar)) {
 			    
-			    System.out.println("hola");
+			        System.out.println("hola");
 			}else if(botonPulsado.equals(ajustes1)) {
 				
-                menu.setVisible(false);
+                                menu.setVisible(false);
 				
 				juego.setVisible(false);
 				
@@ -733,11 +608,9 @@ class Ventana extends JFrame{
 				Ajustes.setVisible(true);
 				
 				AjustesGeneral.setVisible(false);
-				
-				
-				
+	
 			}else if(botonPulsado.equals(volver5)) {
-                menu.setVisible(false);
+                                menu.setVisible(false);
 				
 				juego.setVisible(false);
 				
@@ -755,7 +628,7 @@ class Ventana extends JFrame{
 				
 			}else if(botonPulsado.equals(nivelTres)) {
 				
-                menu.setVisible(false);
+                                menu.setVisible(false);
 				
 				juego.setVisible(false);
 				
@@ -781,15 +654,15 @@ class Ventana extends JFrame{
     	  public void run(){
     		  try {
     			  for(int i =0; i < 100; i ++) {
-    				  pan1 = new panBienvenida();
+    			      pan1 = new panBienvenida();
     				  
-    				  pan1.setBounds(x1,y1,400,50);
+    		              pan1.setBounds(x1,y1,400,50);
     				  
-    				  pan1.setVisible(true);
+    	                      pan1.setVisible(true);
     				  
-    				  menu.add(pan1);
+    			      menu.add(pan1);
     				  
-    				  menu.repaint();
+    			      menu.repaint();
     				  
     			      Thread.sleep(14);
     			      
@@ -805,28 +678,29 @@ class Ventana extends JFrame{
     			      
     			      pan1.setVisible(true);
 				  
-				      menu.add(pan1);
+			      menu.add(pan1);
 				  
-				      menu.repaint();
+			      menu.repaint();
 				      
-    			     Thread.sleep(4000);
+    			      Thread.sleep(4000);
     			     
     			  for(int i =0; i < 100; i ++) {
-    				  menu.remove(pan1);
+    			      menu.remove(pan1);
     				  
-       				  pan1 = new panBienvenida();
+       			      pan1 = new panBienvenida();
        				  
-       				  pan1.setBounds(x1,y1,400,50);
+       			      pan1.setBounds(x1,y1,400,50);
        				  
-       				  pan1.setVisible(true);
+       			      pan1.setVisible(true);
        				  
-       				  menu.add(pan1);
+       			      menu.add(pan1);
        				  
-       				  menu.repaint();
+       			      menu.repaint();
        				  
        			      Thread.sleep(5);
        			      
        			      menu.remove(pan1);
+				  
        			      System.out.print(i + "  ");
        			      
        			      y1--;
@@ -924,8 +798,7 @@ class Ventana extends JFrame{
 	public Ventana() {
 		
 		try {
-			
-			iconoJuego = ImageIO.read(new File("src/img/portada.png"));//icono nuevo del juego
+		    iconoJuego = ImageIO.read(new File("src/img/portada.png"));//icono nuevo del juego
 			
 		    //icono = ImageIO.read(new File("src/suerte.png"));//icono antiguo del juego
 		    
@@ -1124,7 +997,7 @@ class Ventana extends JFrame{
 			
 			  add(usuario);
 			  
-			  g.drawString("Contraseña: ", 15, 100);
+			  g.drawString("ContraseÃ±a: ", 15, 100);
 			  
 			  contra.setFont(jug2);
 			  
@@ -1156,7 +1029,7 @@ class Ventana extends JFrame{
               
               add(repContra);
 			  
-			  registrarse = new JButton(new Botones2("Registrarse",null,null,0));
+			  registrarse = new JButton(new Botones2("<html><i>Registrarse</i></html>",null,null,0));
 			  
 			  registrarse.setFont(jug2);
 			  
@@ -1210,7 +1083,7 @@ class Ventana extends JFrame{
 			  
 			  add(usuario2);
 			  
-              g.drawString("Contraseña: ", 15, 260);
+              g.drawString("ContraseÃ±a: ", 15, 260);
 			  
 			  contraEntrar.setFont(jug2);
 			  
@@ -1431,13 +1304,13 @@ class Ventana extends JFrame{
 			
 			g.drawString("EL LABERINTO", 330, 100);//330
 			
-            g.setColor(new Color(18,123,36));
+                        g.setColor(new Color(18,123,36));
             
-            Font fuente1 = new Font("Impact", Font.BOLD , 65);//55
+                        Font fuente1 = new Font("Impact", Font.BOLD , 65);//55
             
-			g.drawString("EL LABERINTO", 328, 100);//328
+			g.drawString("EL LABERINTO", 328, 100);
 			
-		}//fin paint component
+		}//fin paintComponent
 		
 		/**mouse listener del menu**/
         private class Rata extends MouseAdapter{
@@ -1459,13 +1332,11 @@ class Ventana extends JFrame{
         		  
         		  //System.out.println("Estas fuera del panel");
         		  
-                  //posPanRegX += 15;//efecto del aumento
+                          //posPanRegX += 15;//efecto del aumento
         		  
-        		 // posPanRegY -= 15;
+        		  // posPanRegY -= 15;
         		  
-        		  //repaint();
-        		  
-        		  
+        		  //repaint();  
         	  }
         }
        
@@ -1480,21 +1351,21 @@ class Ventana extends JFrame{
 			   
 			setBackground(new Color(89,10,144));
 			   
-		    setBounds(0,0,PantallaDimAncho/2,PantallaDimAlto/2);
+		       setBounds(0,0,PantallaDimAncho/2,PantallaDimAlto/2);
 		    
-		    volver2 = new JButton(new Botones2("Volver",null, null, 5));
+		       volver2 = new JButton(new Botones2("Volver",null, null, 5));
 			   
-		    volver2.setBounds(325, 415 - x, 355 , 60);
+		       volver2.setBounds(325, 415 - x, 355 , 60);
 			   
-		    volver2.setBackground(new Color(79,4,127));
+		       volver2.setBackground(new Color(79,4,127));
 				
-		    Font jug = new Font("Impact", Font.BOLD, 40);
+		       Font jug = new Font("Impact", Font.BOLD, 40);
 				
-		    volver2.setFont(jug);
+		        volver2.setFont(jug);
 				
-		    volver2.setForeground(new Color(31,195,14));
+		        volver2.setForeground(new Color(31,195,14));
 			   
-		    //volver1.addActionListener(botones);
+		        //volver1.addActionListener(botones);
 			   
 			volver2.setVisible(true);
 			
@@ -1504,26 +1375,25 @@ class Ventana extends JFrame{
 			
 			ajustes1.setBackground(new Color(79,4,127));
 				
-		    ajustes1.setFont(jug);
+		        ajustes1.setFont(jug);
 				
-		    ajustes1.setForeground(new Color(31,195,14));
+		        ajustes1.setForeground(new Color(31,195,14));
 			   
-		    ajustes1.addActionListener(botones);
+		        ajustes1.addActionListener(botones);
 			   
 			ajustes1.setVisible(true);
 			
 			idiomas = new JButton(new Botones2("Idiomas", null, null, 6));
 			
-            idiomas.setBounds(325, 235 - x, 355 , 60);
+                        idiomas.setBounds(325, 235 - x, 355 , 60);
 			
-            idiomas.setBackground(new Color(79,4,127));
+                        idiomas.setBackground(new Color(79,4,127));
 				
-            idiomas.setFont(jug);
+                        idiomas.setFont(jug);
 				
-            idiomas.setForeground(new Color(31,195,14));
+                        idiomas.setForeground(new Color(31,195,14));
             
-            idiomas.setVisible(true);
-           
+                        idiomas.setVisible(true);
 
 			add(volver2);
 			
@@ -1543,15 +1413,13 @@ class Ventana extends JFrame{
 			
 			g.setFont(fuente);
 			
-			//g.setColor(new Color);
-			
 			g.setColor(new Color(72,179,25));
 			
 			g.drawString("EL LABERINTO", 330, 100);//330
 			
-            g.setColor(new Color(18,123,36));
+                        g.setColor(new Color(18,123,36));
             
-            Font fuente1 = new Font("Impact", Font.BOLD , 65);//55
+                        Font fuente1 = new Font("Impact", Font.BOLD , 65);//55
             
 			g.drawString("EL LABERINTO", 328, 100);//328
 			
@@ -1801,8 +1669,6 @@ class Ventana extends JFrame{
 				   ContadorSeg = 0;
 				   
 			   }
-			   
-			   
 			   /*if(iniCrono == true) {
 				   
 				   try {
@@ -2075,7 +1941,7 @@ class Ventana extends JFrame{
 		
 		 public Estadisticas(){
 			 
-			     //añado cursor
+			     //aÃ±ado cursor
 			    setCursor(cursorporDefecto);
 			 
 			    setLayout(null);
@@ -2168,9 +2034,6 @@ class Ventana extends JFrame{
 	 }
 	 
 	 /**NIVEL 2**/
-	 /*tiraMisil misil = new tiraMisil();
-                	
-                	   add(misil);**/
 	 class NivelDos extends JPanel{
 		   private int municion = 10;
 		   public boolean puedeLanzar;//declaro tiempo de lanzamiento
@@ -2207,15 +2070,6 @@ class Ventana extends JFrame{
              	    nivel2.add(misil);
 				}
 			}
-			/*
-			public void actualizar() {
-				
-               // movimientoBomba();
-				
-				//movimientoAve();
-				
-			}
-			*/
 			//protected static Rectangle2D suelo;
 			
 			protected int x =0;
@@ -2292,14 +2146,7 @@ class Ventana extends JFrame{
 				
 				g.setColor(Color.GREEN);
 				
-				//g.fillRect(500, 200, 20, 20);
-				//g.fillRect(550, 200, 40, 40);
-				
-				//g.fillRect(0, 450, 2000, 50);
-				  
-				//g.setColor(Color.black);
-				
-                g.fill(suelo());
+                                g.fill(suelo());
                 
 				g.drawImage(suelo, x,405 , 2000, 100, null);
 				
@@ -2317,33 +2164,17 @@ class Ventana extends JFrame{
 					g.drawImage(calavera, 70 - x, 5, 50, 50, null);
 				}			
 				
-				//g.drawImage(bomba, 10 - x, 10, 50, 50, null);
-				
-				//g.drawImage(bomba, 60 - x, 10, 50, 50, null);
-				
-				//g.drawImage(bomba, 110 - x, 10, 50, 50, null);
-				
 				g.setFont(new Font("SWGothe", Font.BOLD, 35));//Lucida Handwriting
 				
 				g.drawImage(caza, 200 -x, posAve,200, 150, null);//ave
 				
 				g.setColor(Color.red);
-				
-				//actualizar();
+
 				movimientoAve();
 				
 				movimientoBomba();
 				
 				g.drawString("Municion", 0 - x, 80);
-				
-				/**if(soltarBomba) {
-					
-					pos = posAve;
-					
-					g.drawRect(x, pos, 50, 50);
-					
-					soltarBomba = false;
-				}*/
 			}
 			protected class ContadorVidaMisil extends Thread{
 				public ContadorVidaMisil() {
@@ -2622,33 +2453,16 @@ class Archivo {
 			
 		}catch(IOException e) {
 			
-			System.err.println("No se puede sacar el archivo");
+			System.err.println("No se ENCUENTRA el archivo");
 		}
 		
 	}
 	
 	
 }
-class Info extends JPanel{
-	
-	public Info() {}
-	
-	public static Info info(String descripcio, int posX, int posY) {
-		
-		Info panel = new Info();
-		
-		panel.setLayout(null);
-		
-		panel.setBounds(posX , posY, 50 , 70);
-		
-		panel.setVisible(true);
-		
-		return panel;
-	}
-}
 
 //clase del idioma
-
+/**TODO*/
 
 class Idioma{
 	
@@ -2658,7 +2472,7 @@ class Idioma{
 	}	
 }
 //socket
-
+/**TODO*/
 class mail{
 	
 	public mail() {
@@ -2690,7 +2504,7 @@ class Servidor extends Thread{
 	
 	public void run() {
 		
-		System.out.println("Se acepto la coneccion nueva");
+		System.out.println("Se acepto la coneccion nueva al server");
 		
 		try {
 			

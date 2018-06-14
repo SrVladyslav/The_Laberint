@@ -58,38 +58,23 @@ public class Principal{
 	public static void main(String[] args) {
   
 		vent = new Ventana();
-		
-		//**LEO LOS ARCHIVOS**//
+		//**read archives**//
 		try {
-			fr = new FileReader("src/lab1.txt");
-			
-			login = new FileReader("src/log.txt");
-			
-			BufferedReader br = new BufferedReader(fr);
-			
-			BufferedReader log = new BufferedReader(login);
-			
-			int i = 0;
-			
-			camp = new char[DIM_TABLON_JUEGO_X][DIM_TABLON_JUEGO_Y];
-			
-			while((campo = br.readLine()) != null) {
-				
-				//System.out.println(""+ campo);
-				
-				char[] linia= campo.toCharArray();
-				
-				for(int j = 0; j < linia.length; j ++) {
-					
+			fr = new FileReader("src/lab1.txt");		
+			login = new FileReader("src/log.txt");		
+			BufferedReader br = new BufferedReader(fr);		
+			BufferedReader log = new BufferedReader(login);		
+			int i = 0;	
+			camp = new char[DIM_TABLON_JUEGO_X][DIM_TABLON_JUEGO_Y];			
+			while((campo = br.readLine()) != null) {			
+				//System.out.println(""+ campo);		
+				char[] linia= campo.toCharArray();		
+				for(int j = 0; j < linia.length; j ++) {		
 					camp[i][j] = linia[j];
-				}
-				
+				}	
 				i++;
 			}
-
-					
 			System.out.println();System.out.println();
-			
 			for(int k = 0; k < DIM_TABLON_JUEGO_X; k ++) {
 				for(int h = 0; h < DIM_TABLON_JUEGO_Y; h ++) {
 					//System.out.print(camp[k][h]);
@@ -97,189 +82,104 @@ public class Principal{
 				//System.out.println();
 			}
 			
-			/**logeando**/
-			
-			
-			int numLineas = 5;//detecto el numero de jugadores
-			
+			/**logeando**/	
+			int numLineas = 5;//detecting players number
 			String x = "";
-			
-			Principal.numJugadores = numLineas;
-			
-			jugadors = new String[Principal.numJugadores][5];//inicio el array con el numero de jugadores que estan
-			
+			Principal.numJugadores = numLineas;	
+			jugadors = new String[Principal.numJugadores][5];//inicio el array con el numero de jugadores que estan	
 			System.out.println(x);
-			jugs = "";
-			
+			jugs = "";	
 			/**asd ads as dasd asd 
                asd asd asd a sd
               as dasd asd asd asd 
               as daasd asd s s 
               sd asd asd asd asd 
-              asd asd asd as dasd*/
-			
+              asd asd asd as dasd*/	
 			i = 0;
-			while((jugs = log.readLine()) != null) {//no entra al bucle por algo
-				
-				String[] j = jugs.split(" ");
-				
-				System.out.println(i);
-				
-				System.out.println(jugs);//da error
-				
-				jugadors[i][0] = j[0].trim();
-				
-				//Principal.jugadors[0][0] = "5";
-				
-				//System.out.println("hola" + jugadors[0][0]);
-				
-				jugadors[i][1] = j[1].trim();
-				
-				jugadors[i][2] = j[2].trim();
-				
-				jugadors[i][3] = j[3].trim();
-				
-				jugadors[i][4] = j[4].trim();
-				
+			while((jugs = log.readLine()) != null) {//no entra al bucle por algo	
+				String[] j = jugs.split(" ");				
+				System.out.println(i);			
+				System.out.println(jugs);//da error				
+				jugadors[i][0] = j[0].trim();			
+				//Principal.jugadors[0][0] = "5";				
+				//System.out.println("hola" + jugadors[0][0]);				
+				jugadors[i][1] = j[1].trim();			
+				jugadors[i][2] = j[2].trim();			
+				jugadors[i][3] = j[3].trim();			
+				jugadors[i][4] = j[4].trim();			
 				i++;
-			}
-			
+			}		
 			System.out.println(jugadors[2][4]);
 			/**audio**/
-			InputStream in = new FileInputStream("src/img/SAW.wav");
-			
-			audio = new AudioStream(in);
-			
-			/**escritura archivos**/
-			
-			//fw = new FileWriter("src/log.txt");
-			
-			//bw = new BufferedWriter(fw);
-			
-			//bw.write("Hola");
-			
-		}catch(IOException e) {
-			
-			System.err.println("No se puede sacar el archivo");
-			
+			InputStream in = new FileInputStream("src/img/SAW.wav");			
+			audio = new AudioStream(in);		
+			/**escritura archivos**/		
+			//fw = new FileWriter("src/log.txt");		
+			//bw = new BufferedWriter(fw);		
+			//bw.write("Hola");		
+		}catch(IOException e) {		
+			System.err.println("No se puede sacar el archivo");		
 			System.out.println(e.getMessage() +  e.getLocalizedMessage());
-		}
-		
-	}
-    
+		}	
+	}  
 }//fin listener teclado	
-
 //fin principal
 class Ventana extends JFrame{
-	
-	
 	/**DIMENSIONES DE LA PANTALLA**/
-	private Toolkit dimensiones = Toolkit.getDefaultToolkit();
-	
-	protected Toolkit config = Toolkit.getDefaultToolkit();
-	
+	private Toolkit dimensiones = Toolkit.getDefaultToolkit();	
+	protected Toolkit config = Toolkit.getDefaultToolkit();	
 	Dimension dimension = dimensiones.getScreenSize();
-	
 	private int PantallaAlto = (int)dimension.getHeight(), PantallaAncho = (int)dimension.getWidth();
-	
-	public int PantallaDimAlto = 1080, PantallaDimAncho = 1920;
-	
+	public int PantallaDimAlto = 1080, PantallaDimAncho = 1920;	
 	//private JPanel contador, menu1,jugar;
-	private static String presionaParaComenzar = "Pulsa en la pantalla para empezar!";
-	
-	private static boolean comenzar = true;
-	
-	private static int posJugX,posJugY;//posicion del jugador
-	
-	private int posDibX, posDibY;//posicion del recorrido para dibujar
-	
-	private int posIniPX= 1;
-	
-	private int posIniPY =5;
-	
-	protected int posPanRegX = 20 , posPanRegY = 140, dimAlReg = 290, dimAnReg = 324;//dimensiones del registro // 20 140 290  324
-	    
+	private static String presionaParaComenzar = "Pulsa en la pantalla para empezar!";	
+	private static boolean comenzar = true;	
+	private static int posJugX,posJugY;//player position
+	private int posDibX, posDibY;//posicion del recorrido para dibujar	
+	private int posIniPX= 1;	
+	private int posIniPY =5;	
+	protected int posPanRegX = 20 , posPanRegY = 140, dimAlReg = 290, dimAnReg = 324;//dimensiones del registro // 20 140 290  324	    
 	ImageIcon iconoCursor1 = new ImageIcon("scr/img/cursor1.png");//imagen del cursor 
-	
-	protected ImageIcon imgCuenta;
-	
-	protected Cursor cursorporDefecto, cursorPD2;//cursor en la pagina por defecto
-	
-	private Botones botones;
-	
-	private JButton salir, iniciar, record , menuPpal,guardar, volver, volver1, volver2,ajustes, ajustes1, volver5, nivelTres; //botones del menu
-	
-	private JButton rojo, cyan, azul, gris, registrarse, borrar, conectarse, menuReg, idiomas;
-	
-	private Menu menu;
-	
-	protected NivelDos nivel2; //nivel dos, clase externa
-	
+	protected ImageIcon imgCuenta;	
+	protected Cursor cursorporDefecto, cursorPD2;//cursor en la pagina por defecto	
+	private Botones botones;	
+	private JButton salir, iniciar, record , menuPpal,guardar, volver, volver1, volver2,ajustes, ajustes1, volver5, nivelTres; //botones del menu	
+	private JButton rojo, cyan, azul, gris, registrarse, borrar, conectarse, menuReg, idiomas;	
+	private Menu menu;	
 	private Ajustes Ajustes;
-	
-	private Juego juego; 
-	
-	private Contador Contador;
-	
-	private Estadisticas estadisticas;
-	
-	private EstTabla estTabla;
-	
-	private Registrar registrar;
-	
-	private AjustesGeneral AjustesGeneral;
-	
-	protected JPanel pan;
-	
+	private Juego juego; 	
+	private Contador Contador;	
+	private Estadisticas estadisticas;	
+	private EstTabla estTabla;	
+	private Registrar registrar;	
+	private AjustesGeneral AjustesGeneral;	
+	protected JPanel pan;	
 	private Image icono, laberinto , Rojo, Gris, Azul, Cyan,iconoJuego;
-	
-	public Image skinDiablo1, cursorXD, cursorInvisible;
-	
-    protected static Icon iconoRegistrar, luna;
-	
-	private JTextArea usuario, usuario2;//usuario en la pagina ppal para conectarse
-	
+	public Image skinDiablo1, cursorXD, cursorInvisible;	
+    protected static Icon iconoRegistrar, luna;	
+	private JTextArea usuario, usuario2;//usuario en la pagina ppal para conectarse	
 	private JPasswordField contra, repContra, contraEntrar;//contraseñas para entrar desde la pag ppal
-
-	private String usu = "Introduce tu usuario";
-	
-	protected String nombreDelUsuario = "";
-	
-	private String contrasenya = "y la contraseña";
-	
+	private String usu = "Introduce tu usuario";	
+	protected String nombreDelUsuario = "";	
+	private String contrasenya = "y la contraseña";	
 	private boolean menuRegistro, tirarMisil, arriba = false, abajo = false;
-	
-	protected boolean iniCrono = false;
-	
-	protected score scor;
-	
-	private Contador1 hilo;  
-	
-	private Thread hiloPajaro;//declaro el hilo del pajaro
-	
-	private Hilo2 cn;
-	
-	private Hilo2Ave cAve;
-	
-	private BienvenidaJug hilo2;
-	
-	private panBienvenida pan1;
-	
+	protected boolean iniCrono = false;	
+	protected score scor;	
+	private Contador1 hilo;  	
+	private Thread hiloPajaro;//declaro el hilo del pajaro	
+	private BienvenidaJug hilo2;	
+	private panBienvenida pan1;	
 	private boolean runThread = false;
-	
-	private Color colorRojo = new Color(169,50,38);
-	  
-	private Color colorMorado = new Color(89,10,144);
-	
-	private int ContadorMin = 0, ContadorSeg = 0, ContadorHora; 
-	
-	private int x1 = 50, y1 = - 100;//posicion inicial del panel 
-	
+	private Color colorRojo = new Color(169,50,38);	  
+	private Color colorMorado = new Color(89,10,144);	
+	private int ContadorMin = 0, ContadorSeg = 0, ContadorHora; 	
+	private int x1 = 50, y1 = - 100;//posicion inicial del panel 	
 	protected static String mensajito = "";
 	
 	
+	/**Player class**/
 	public static class Jugador{
-    	
+
   	  private String nomJug, contraJug;
   	  private int score;
   	  private Jugador[] jugadores;
@@ -287,71 +187,41 @@ class Ventana extends JFrame{
   	  public int posXJug, posYJug;
   	  private static final int CANTIDAD_JUGADORES = 10;
   	  
-  	  public Jugador() {
-  		  
-  		   jugadores = new Jugador[CANTIDAD_JUGADORES];
-  	  }
-  	  
-	      public Jugador(String nomJ, String contraJ){
-	    	  
-	    	  nomJug = nomJ;
-	    	  
+  	  	  public Jugador() {jugadores = new Jugador[CANTIDAD_JUGADORES];}	  
+	      public Jugador(String nomJ, String contraJ){  
+	    	  nomJug = nomJ; 
 	    	  contraJug = contraJ;
 	      }	 
-	      public Jugador(String nom, String contra, int x, int y, int score) {
-	    	  
-	    	  this.nomJug = nom;
-	    	  
-	    	  this.contraJug = contra;
-	    	  
-	    	  this.posXJug =x;
-	    	  
-	    	  this.posYJug = y;
-	    	  
+	      public Jugador(String nom, String contra, int x, int y, int score) {	    	  
+	    	  this.nomJug = nom;    	  
+	    	  this.contraJug = contra;	    	  
+	    	  this.posXJug =x;	    	  
+	    	  this.posYJug = y;	    	  
 	    	  this.score = score;
 	      }
-	      public void setJugador(int x, int y, int score) {
-	    	  
-            this.posXJug = x;
-            
-            this.posYJug = y;
-            
-            this.score = score;
-	    	  
-	      }
-	      
-	     public static boolean compruebaJug(String nom, String contra) {
-	    	  
+	      public void setJugador(int x, int y, int score) {	    	  
+            this.posXJug = x;          
+            this.posYJug = y;        
+            this.score = score;	    	  
+	      } 
+	     public static boolean compruebaJug(String nom, String contra) {  
 	    	  for(int i = 0; i < Principal.numJugadores; i++) {
-	    		  if(Principal.jugadors[i][0].equals(nom.trim()) && Principal.jugadors[i][1].equals(contra.trim())) {
-	    			  
+	    		  if(Principal.jugadors[i][0].equals(nom.trim()) && Principal.jugadors[i][1].equals(contra.trim())) {  
 	    			  return true; 
-	    		  }
-	    		  
+	    		  }		  
 	    	  }
 	    	  return false;//si no existe jugador
-	      }
-	     
+	      }     
   }
-	
 	/**ACTION LISTENER**/
-	
-	private class Botones2 extends AbstractAction{
-		
-		public Botones2(String nombre, Icon icono, Color color, int valor) {
-			
-            putValue(Action.NAME, nombre);
-			
-			putValue(Action.SMALL_ICON, icono);
-			
-			putValue(Action.SHORT_DESCRIPTION, "Estas a punto de " + nombre);
-			
-			putValue("AccionBoton", color);
-			
-			putValue("accion", valor);
-			
-		}
-		
+	private class Botones2 extends AbstractAction{	
+		public Botones2(String nombre, Icon icono, Color color, int valor) {		
+            putValue(Action.NAME, nombre);			
+			putValue(Action.SMALL_ICON, icono);		
+			putValue(Action.SHORT_DESCRIPTION, "Estas a punto de " + nombre);			
+			putValue("AccionBoton", color);			
+			putValue("accion", valor);			
+		}		
 		public void actionPerformed(ActionEvent e) {
 			/**PRUEBA SOCKETS**/
 			/**if(e.getSource().equals(registrarse)) {
@@ -380,201 +250,107 @@ class Ventana extends JFrame{
 			}
 			*/
 			/**fin prueba**/
-			int valor = (int)getValue("accion");
-			
+			int valor = (int)getValue("accion");		
 			if(valor == 0) {
-				System.out.println("boton uno funciona y valor " );
-				
+				System.out.println("boton uno funciona y valor " );			
 				//pide la primera ocontra
 				try{
-					char[] texto  = contra.getPassword();
-				
-				    char[] textRep = repContra.getPassword();
-								
-				    String contra1 ="";  String repcontra = "";
-				
+					char[] texto  = contra.getPassword();			
+				    char[] textRep = repContra.getPassword();							
+				    String contra1 ="";  String repcontra = "";			
 				    for(int i = 0; i < texto.length; i++) {
 					   contra1 += texto[i];
-				   }
+				    }
 				
 				   for(int l = 0; l < textRep.length; l++) {
 					   repcontra += texto[l];
 			      	}
-				
-				   String text2 = usuario.getText();
-				
-				   System.out.println("  usuario: " + text2 + " y contra : " + contra1 + " y " + repcontra);
-				   
-				   //**COMPUEBA SI LAS CONTRASEÑAS COINCIDEN**//
-				   
-				   if(contra1.equals(repcontra)) {
-					   
-					   System.out.println("Las contraseñas coinciden");
-					   
-					   boolean x =  Jugador.compruebaJug(text2, contra1);//Jugador.compruebaJug(text2, contra1);
-					   
+				   String text2 = usuario.getText();			
+				   System.out.println("  usuario: " + text2 + " y contra : " + contra1 + " y " + repcontra);			   
+				   //**COMPUEBA SI LAS CONTRASEÑAS COINCIDEN**//			   
+				   if(contra1.equals(repcontra)) {				   
+					   System.out.println("Las contraseñas coinciden");				   
+					   boolean x =  Jugador.compruebaJug(text2, contra1);//Jugador.compruebaJug(text2, contra1);					   
 					   System.out.println(Principal.jugadors[1][0] + "  " + Principal.jugadors[1][1]);
-					   if(x == true){
-						   
-						   System.out.println("El jugador existe");
-						   
-					   }else { System.out.println("El jugador no existe");
-					   
-					          usuario.setBackground(colorRojo);
-				        
-				              contra.setBackground(colorRojo);
-				        
+					   if(x == true){					   
+						   System.out.println("El jugador existe");					   
+					   }else { System.out.println("El jugador no existe");					   
+					          usuario.setBackground(colorRojo);				        
+				              contra.setBackground(colorRojo);				        
 				              repContra.setBackground(colorRojo);}
-				   }else {
-					   
-					   System.out.print("Las contraseñas no coinciden");
-					   
-				   }
-				
-				}catch(Exception l){
-					
-					System.err.println("La has cagado pro");
-					
-				}
-				
-			}else if(valor == 1) {
-				
-				System.out.println("Reiniciando contraseña");
-				
-				contra.setText(contrasenya);
-				
-				repContra.setText(contrasenya);
-				
-				usuario.setText(usu);
-				
-				repaint();
-	
+				   }else {					   
+					   System.out.print("Las contraseñas no coinciden");					   
+				   }			
+				}catch(Exception l){				
+					System.err.println("La has cagado pro");				
+				}			
+			}else if(valor == 1) {				
+				System.out.println("Reiniciando contraseña");			
+				contra.setText(contrasenya);				
+				repContra.setText(contrasenya);				
+				usuario.setText(usu);				
+				repaint();	
 			}else if(valor ==3) {
 				/**CONECCION AL PERFIL**/
 				//pide la primera ocontra
 				try{
-				       char[] textRep = contraEntrar.getPassword();
-								
-				       String usuario1 = usuario2.getText();  String contraxD = "";
-				       
-				       for(int i =0; i < textRep.length; i++) {contraxD += textRep[i];}
-			
-				       //System.out.println("  usuario: " + usuario1 + " y contra : " + usuario1 + " y " + contraxD);
-				       
-				       nombreDelUsuario = usuario1;
-				   
-				   //**COMPRUEBA SI EXISTE EL JUGADOR**//
-					   boolean x =  Jugador.compruebaJug(usuario1,contraxD );//Jugador.compruebaJug(text2, contra1);
-					   
+				       char[] textRep = contraEntrar.getPassword();							
+				       String usuario1 = usuario2.getText();  String contraxD = "";			       
+				       for(int i =0; i < textRep.length; i++) {contraxD += textRep[i];}		
+				       //System.out.println("  usuario: " + usuario1 + " y contra : " + usuario1 + " y " + contraxD);				       
+				       nombreDelUsuario = usuario1;			   
+				       //**COMPRUEBA SI EXISTE EL JUGADOR**//
+					   boolean x =  Jugador.compruebaJug(usuario1,contraxD );//Jugador.compruebaJug(text2, contra1);				   
 					   System.out.println(Principal.jugadors[1][0] + "  " + Principal.jugadors[1][1]);
-					   if(x == true){
-						   
-						   System.out.println("El jugador existe");
-						   
-						   /***prueba*/
-						   
-							
-						   
-						   
-						   
-						   /**fin prueba*/
-						   
+					   if(x == true){						   
+						   System.out.println("El jugador existe");					   						   
 						   mensajito = usuario1;
-						   
-						  
-                              if(y1 == -100) {
-                            	  BienvenidaJug saludo = new BienvenidaJug();
-       						   
+						   if(y1 == -100) {
+                            	  BienvenidaJug saludo = new BienvenidaJug();			   
        						      saludo.start();
-                              }
-						   
+                              }					   
 					   }else { System.out.println("El jugador no existe");
-					        usuario2.setBackground(colorRojo);
-					        
+					        usuario2.setBackground(colorRojo);					        
 					        contraEntrar.setBackground(colorRojo);
-					   }
-				
-				}catch(Exception l){
-					
-					System.err.println("La has cagado pro");
-					
+					   }			
+				}catch(Exception l){				
+					System.err.println("La has cagado pro");				
 				}
-			}else if(valor == 4) {
-				
-					if(registrar.isVisible()) {
-						
-						registrar.setVisible(false);
-						
-			       }else if(menuRegistro == false){registrar.setVisible(true);}
-					
-					Principal.vent.repaint();
-					
+			}else if(valor == 4) {				
+					if(registrar.isVisible()) {					
+						registrar.setVisible(false);						
+			       }else if(menuRegistro == false){registrar.setVisible(true);}				
+					Principal.vent.repaint();				
 					System.out.println("entra");
-			}else if (valor == 5) {
-				
-                    menu.setVisible(true);
-				
-				    juego.setVisible(false);
-				
-				    estadisticas.setVisible(false);
-				
-			     	estTabla.setVisible(false);
-				
-				    Contador.setVisible(false);
-				
-				    Ajustes.setVisible(false);
-				    
-				    AjustesGeneral.setVisible(false);
-				    
-				    nivel2.setVisible(false);
+			}else if (valor == 5) {			
+                    menu.setVisible(true);				
+				    juego.setVisible(false);				
+				    estadisticas.setVisible(false);				
+			     	estTabla.setVisible(false);				
+				    Contador.setVisible(false);			
+				    Ajustes.setVisible(false);			    
+				    AjustesGeneral.setVisible(false);				    
 			}else if (valor == 6) {
 				    menu.setVisible(false);
-					
-				    juego.setVisible(false);
-				
-				    estadisticas.setVisible(false);
-				
-			     	estTabla.setVisible(false);
-				
-				    Contador.setVisible(false);
-				
-				    Ajustes.setVisible(false);
-				    
-				    AjustesGeneral.setVisible(false);
-				    
-                    //Teclado2 t = new Teclado2()
-				    
-				    //nivel2.addKeyListener(t);
-				    
-					cn = new Hilo2();
-					
-					cAve = new Hilo2Ave();
-				    
-					cn.start();
-					
-					cAve.start();
-				    
-				    nivel2.setVisible(true);
-				    
-				    
-				   
+				    juego.setVisible(false);				
+				    estadisticas.setVisible(false);				
+			     	estTabla.setVisible(false);				
+				    Contador.setVisible(false);				
+				    Ajustes.setVisible(false);				    
+				    AjustesGeneral.setVisible(false);			    
+                    //Teclado2 t = new Teclado2()				    
+				    //nivel2.addKeyListener(t);				    			    
 			}
 		}
 		
 	}
 	
-	private class Botones extends AbstractAction implements ActionListener{
-		
-		public Botones() {}
-		
-		public void actionPerformed(ActionEvent e) {
-			
-			Object botonPulsado = e.getSource();
-			
-			if(botonPulsado.equals(iniciar)) {
-				
-				comenzar = true;
-				
+	private class Botones extends AbstractAction implements ActionListener{	
+		public Botones() {}		
+		public void actionPerformed(ActionEvent e) {			
+			Object botonPulsado = e.getSource();			
+			if(botonPulsado.equals(iniciar)) {				
+				comenzar = true;				
 				menu.setVisible(false);
 				
 				juego.setVisible(true);
@@ -588,9 +364,6 @@ class Ventana extends JFrame{
 				Ajustes.setVisible(false);
 				
 				AjustesGeneral.setVisible(false);
-				
-				nivel2.setVisible(false);
-				
 				
 				posIniPX = 1;
 				
@@ -616,8 +389,6 @@ class Ventana extends JFrame{
 				
 				AjustesGeneral.setVisible(false);
 				
-				nivel2.setVisible(false);
-				
 			}else if(botonPulsado.equals(salir)) {
 			
 				System.exit(0);
@@ -636,8 +407,6 @@ class Ventana extends JFrame{
 				Ajustes.setVisible(false);
 				
 				AjustesGeneral.setVisible(false);
-				
-				nivel2.setVisible(false);
 				
 				runThread = false; //desactivo el contador
 				
@@ -658,8 +427,6 @@ class Ventana extends JFrame{
 				Ajustes.setVisible(false);
 				
 				AjustesGeneral.setVisible(true);
-				
-				nivel2.setVisible(false);
 				
 			} if(botonPulsado.equals(guardar)) {
 				/**TODO guadado de la partida actual**/
@@ -692,8 +459,6 @@ class Ventana extends JFrame{
 				Ajustes.setVisible(false);
 				
 				AjustesGeneral.setVisible(true);
-				
-				nivel2.setVisible(false);
 				
 			}else if(botonPulsado.equals(rojo)) {
 				Principal.colorElegidoPrimario = Principal.COLOR_ROJO;
@@ -749,9 +514,7 @@ class Ventana extends JFrame{
 				
 				Ajustes.setVisible(false);
 				
-				AjustesGeneral.setVisible(true);
-				
-				nivel2.setVisible(false);
+				AjustesGeneral.setVisible(true);;
 				
 			}else if(botonPulsado.equals(nivelTres)) {
 				
@@ -768,10 +531,7 @@ class Ventana extends JFrame{
 				Ajustes.setVisible(false);
 				
 				AjustesGeneral.setVisible(false);
-				
-				nivel2.setVisible(false);
-			}
-			
+			}	
 		}
 	}	
 	//mensaje de bienvenida cuando entra un jugador 
@@ -992,9 +752,6 @@ class Ventana extends JFrame{
 		
 		AjustesGeneral = new AjustesGeneral();
 		
-		nivel2 = new NivelDos();
-		
-		
 		
 		menu.setVisible(true);
 		
@@ -1009,9 +766,7 @@ class Ventana extends JFrame{
 		Ajustes.setVisible(false);
 		
 		AjustesGeneral.setVisible(false);
-		
-		nivel2.setVisible(false);
-		
+
 		add(menu);
 		
 		add(estadisticas);
@@ -1025,8 +780,6 @@ class Ventana extends JFrame{
 		add(Ajustes);
 		
 		add(AjustesGeneral);
-		
-		add(nivel2);
 		
 		setVisible(true);
 		
@@ -1950,70 +1703,45 @@ class Ventana extends JFrame{
 			    
 		 }
 		 
-		 private class Teclado implements KeyListener{
-			    
-			    public Teclado() {
-			    	
-			    }
-			 
-			    public void keyTyped(KeyEvent e) {
-			 		  
-					  if(e.getKeyCode() == KeyEvent.VK_S) {
-					    	//System.out.println("Tecla " + e.getKeyChar() + "  presionada y soltada");
-					  }else {//System.out.println("Tecla " + e.getKeyChar() + "  presionada y soltada"); 
-						  
+		 private class Teclado implements KeyListener{		    
+			    public Teclado() {		    	
+			    }		 
+			    public void keyTyped(KeyEvent e) {		 		  
+					  if(e.getKeyCode() == KeyEvent.VK_S) {					    	//System.out.println("Tecla " + e.getKeyChar() + "  presionada y soltada");
+					  }else {//System.out.println("Tecla " + e.getKeyChar() + "  presionada y soltada"); 					  
 					  }
 			    }
 				 public void keyPressed(KeyEvent e) {
-					  if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
-						  
+					  if(e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {			  
 						  if((Principal.camp[posIniPY - 1][posIniPX]) == '0' || (Principal.camp[posIniPY-1][posIniPX]) == '2' && posIniPY > 0) {
 							  posIniPY --; juego.repaint(); 
 						  }
-
-					  }else if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
-						  
-						  System.out.println(Principal.camp[3][2]);
-						  
-						  if((Principal.camp[posIniPY + 1][posIniPX]) == '0' || (Principal.camp[posIniPY+1][posIniPX]) == '2' && posIniPY > 0) {
-							 
+					  }else if(e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {					  
+						  System.out.println(Principal.camp[3][2]);					  
+						  if((Principal.camp[posIniPY + 1][posIniPX]) == '0' || (Principal.camp[posIniPY+1][posIniPX]) == '2' && posIniPY > 0) {	 
 							  posIniPY ++; juego.repaint(); 
 						  }
-
 					  }else  if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_LEFT) {
-						  
 						  if((Principal.camp[posIniPY][posIniPX - 1]) == '0' || (Principal.camp[posIniPY][posIniPX - 1]) == '2' && posIniPX > 0) {
-						
 							  posIniPX--; juego.repaint(); 
 						  }
-	
-					  }else if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {
-						  
-						  if((Principal.camp[posIniPY][posIniPX + 1]) == '0' || (Principal.camp[posIniPY][posIniPX + 1]) == '2' &&  posIniPX > 0) {
-							
+					  }else if(e.getKeyCode() == KeyEvent.VK_D || e.getKeyCode() == KeyEvent.VK_RIGHT) {  
+						  if((Principal.camp[posIniPY][posIniPX + 1]) == '0' || (Principal.camp[posIniPY][posIniPX + 1]) == '2' &&  posIniPX > 0) {	
 							  posIniPX ++; juego.repaint(); 
 						  }
-					  }
-					
+					  }			
 				  }
 			     public void keyReleased(KeyEvent e) {
 			    	 juego.repaint();
 				  } 
-			}
-		 
-		   /**DELAY WITH THREAD**/
-	     
-	     protected void delay(int cantidad){
-	    	 
+			}	 
+		   /**DELAY WITH THREAD**/     
+	     protected void delay(int cantidad){	    	 
 	         try { Thread.sleep(cantidad); } catch (Exception e) { ; }
-	     }
-		 
-	     
+	     }	     
 	     /**La clase raton**/
-		 protected class Raton extends MouseAdapter{
-			 
-			public void mouseClicked(MouseEvent e) {
-				
+		 protected class Raton extends MouseAdapter{		 
+			public void mouseClicked(MouseEvent e) {			
 				if(juego.isVisible()) {
 				juego.setFocusable(true);
 				
@@ -2166,451 +1894,6 @@ class Ventana extends JFrame{
 		 }
 		 
 	 }
-	 
-	 /**NIVEL 2**/
-	 /*tiraMisil misil = new tiraMisil();
-                	
-                	   add(misil);**/
-	 class NivelDos extends JPanel{
-		   private int municion = 10;
-		   public boolean puedeLanzar;//declaro tiempo de lanzamiento
-		   private boolean tiraCaca = false;
-		   protected int up, down,posAve = 200;
-		   protected Image nube,cielo, ave,suelo,bomba,misil1,caza, spitfire, calavera;
-		   protected boolean soltarBomba = false;
-		   protected tiraMisil misil;
-		   protected ContadorVidaMisil m;
-		 
-		   public void movimientoAve() {
-			
-				if(abajo == true) {
-					
-					System.out.println("Funciona movAve");
-					posAve += 5;
-				}
-				if(arriba) {
-					
-					System.out.println("Funciona movDentro");
-					posAve -= 5;
-				}
-			}
-			
-			public void movimientoBomba() {
-								
-				if(tirarMisil == true && puedeLanzar == true && municion > 0) {
-					
-					puedeLanzar = false;// freno el poder tirar misiles
-					System.out.println("Misil tirado");
-					
-					misil = new tiraMisil();
-      	
-             	    nivel2.add(misil);
-				}
-			}
-			/*
-			public void actualizar() {
-				
-               // movimientoBomba();
-				
-				//movimientoAve();
-				
-			}
-			*/
-			//protected static Rectangle2D suelo;
-			
-			protected int x =0;
-			
-			public NivelDos (){
-				
-				setLayout(null);
-				
-				setBackground(Color.RED);
-				
-				Teclado2 tecla = new Teclado2();
-				
-			    addKeyListener(tecla);
-				
-				RatonNivel2 rat = new RatonNivel2();
-				
-                m = new ContadorVidaMisil();//instancio la vida del misil
-				
-				m.start();				
-				
-				addMouseListener(rat);
-				
-				setFocusable(true);
-				
-				try {
-					
-					misil1 = ImageIO.read(new File("src/img/ambiente/misil.png"));
-					
-					spitfire = ImageIO.read(new File("src/img/ambiente/Spitfire.gif"));
-					
-					nube = ImageIO.read(new File("src/img/ambiente/nube1.png"));
-					
-					cielo = ImageIO.read(new File("src/img/ambiente/cielo.png"));
-					
-					ave = ImageIO.read(new File("src/img/ambiente/ave.png"));
-					
-					suelo= ImageIO.read(new File("src/img/ambiente/suelo.png"));
-					
-					bomba= ImageIO.read(new File("src/img/ambiente/bomba.png"));
-					
-					caza = ImageIO.read(new File("src/img/ambiente/caza.png"));
-					
-					calavera = ImageIO.read(new File("src/img/ambiente/Calavera.png"));
-					
-				}catch(Exception s){System.out.println("no hay img");}
-				
-			}
-			
-			private int vertical = 0;
-			
-			public void paintComponent(Graphics g2) {
-
-				super.paintComponent(g2);
-				
-				Graphics2D g = (Graphics2D) g2;
-				
-				g.setColor(Color.blue);
-				
-				g.fillOval(1000, 200, 50, 50);
-				
-				g.drawImage(cielo, x, 0, 2000, 520, null);
-				
-				g.drawImage(cielo, x + 2000, 0, 2000, 520, null);
-				
-				g.drawImage(cielo, x + (2000 * 2) -5, 0, 2800, 520, null);
-				
-				g.drawImage(cielo, x + (2000 * 3) -5, 0, 2800, 520, null);
-				
-				g.drawImage(nube, 500, 100, 150, 50, null);
-				
-				g.drawImage(nube, x, 0, 5000, 520, null);
-				
-				g.drawImage(nube, x+ 1500, 200,300, 200, null);
-				
-				g.setColor(Color.GREEN);
-				
-				//g.fillRect(500, 200, 20, 20);
-				//g.fillRect(550, 200, 40, 40);
-				
-				//g.fillRect(0, 450, 2000, 50);
-				  
-				//g.setColor(Color.black);
-				
-                g.fill(suelo());
-                
-				g.drawImage(suelo, x,405 , 2000, 100, null);
-				
-				g.drawImage(suelo, x + 2000,405 , 2000, 100, null);
-				
-				g.drawImage(suelo, x + 4000,405 , 2000, 100, null);
-				
-				g.drawImage(suelo, x + 6000,405 , 2000, 100, null);
-				
-				for(int i = 10;  i < 50* municion; i += 50) {
-					
-					g.drawImage(misil1, i - x, 10, 50, 50, null);
-				}
-				if(municion == 0) {
-					g.drawImage(calavera, 70 - x, 5, 50, 50, null);
-				}			
-				
-				//g.drawImage(bomba, 10 - x, 10, 50, 50, null);
-				
-				//g.drawImage(bomba, 60 - x, 10, 50, 50, null);
-				
-				//g.drawImage(bomba, 110 - x, 10, 50, 50, null);
-				
-				g.setFont(new Font("SWGothe", Font.BOLD, 35));//Lucida Handwriting
-				
-				g.drawImage(caza, 200 -x, posAve,200, 150, null);//ave
-				
-				g.setColor(Color.red);
-				
-				//actualizar();
-				movimientoAve();
-				
-				movimientoBomba();
-				
-				g.drawString("Municion", 0 - x, 80);
-				
-				/**if(soltarBomba) {
-					
-					pos = posAve;
-					
-					g.drawRect(x, pos, 50, 50);
-					
-					soltarBomba = false;
-				}*/
-			}
-			protected class ContadorVidaMisil extends Thread{
-				public ContadorVidaMisil() {
-				}
-				public void run() {
-					try {
-						while(true) {
-							Thread.sleep(1000);
-							
-							puedeLanzar = true;
-						}
-						
-					}catch(Exception e) {}
-				}
-			}
-			
-			/**@return METODO PARA TIRAR EL MISIL**/
-			protected class tiraMisil extends JPanel{
-				protected int velocidad = 0; 
-				protected int x1 = x;
-				protected int vertical1 = vertical;
-				protected int p = posAve;
-				private int posi;
-				private int tiempoVida = posi;
-				
-				public tiraMisil() {
-					
-					setLayout(null);
-					
-					posi = 0;
-					
-					setBounds(200 + posi - x1 , p + 80, 80, 50);
-					
-					HiloMisil hilo = new HiloMisil();
-					
-					hilo.start();
-					
-					municion --;
-					
-					setOpaque(false);
-					
-					setVisible(true);
-				}				 
-			     public void paintComponent(Graphics g2) {
-
-				    super.paintComponent(g2);
-				
-				    Graphics2D g = (Graphics2D) g2;
-
-				    setBounds(200 + posi - x1, p + 80, 80, 50);
-						       
-				    g.drawImage(nivel2.misil1,0 , 0, 80, 50, null);
-						      
-					   repaint();     
-			     }
-			     /**POSICION DEL MISIL**/
-			     protected class HiloMisil extends Thread{
-						private int posicionMisil;//sumara posiciones a los misiles 
-						public HiloMisil(){
-							posicionMisil = 0;
-						}
-						public void run() {
-							try {
-								while(true) {
-								       Thread.sleep(1);
-								       posi ++;
-								       if(posi > 700) {
-										   //vuela = false;
-										   System.out.println("Hola");
-										   misil.setVisible(false);
-                                           hilo.stop();
-                                           
-				                		   //this.setVisible(false);
-							   }
-								}
-							}catch(Exception e) {
-							}
-						}
-						
-					}
-			}
-			
-			
-			/**MOUSE LISTENER DEL NIVEL 2**/
-			private class RatonNivel2 extends MouseAdapter{
-
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
-					if(nivel2.isVisible()) {
-						
-						nivel2.setFocusable(true);
-						
-						nivel2.requestFocus();
-					}
-				}
-
-				@Override
-				public void mousePressed(MouseEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-
-				
-			}
-			
-			private class Teclado2 implements KeyListener{
-				
-				public Teclado2(){}
-
-				public void keyTyped(KeyEvent e) {
-					// TODO Auto-generated method stub
-					//System.out.println("XD");
-					
-                    if(e.getKeyCode() ==  KeyEvent.VK_0) {
-						
-						System.out.println("1");
-					}
-				}
-
-				public void keyPressed(KeyEvent e) {
-					// TODO Auto-generated method stub
-					
-					if(e.getKeyCode() == KeyEvent.VK_W) {
-						//posAve -= 5;
-						arriba = true;
-					}else if(e.getKeyCode() == KeyEvent.VK_S) {
-						//posAve += 5;
-						
-						abajo = true;
-					}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-			
-						//tiraCaca = true;
-						if(puedeLanzar) {
-						    
-							tirarMisil = true;
-						}
-						
-						//try{}catch(Exception t) {}
-					}else if(e.getKeyCode() == KeyEvent.VK_SHIFT) {
-						
-						x -= 10;
-						System.out.println("Acelerando");
-					}else if(e.getKeyCode() == KeyEvent.VK_1){
-						municion = 1;
-					}else {
-						municion ++;
-					}
-					
-				}
-
-				public void keyReleased(KeyEvent e) {
-					if(e.getKeyCode() == KeyEvent.VK_W) {
-						//posAve -= 5;
-						
-						arriba = false;
-					}else if(e.getKeyCode() == KeyEvent.VK_S) {
-						//posAve += 5;
-						
-						abajo = false;
-					}else if(e.getKeyCode() == KeyEvent.VK_SPACE) {
-					     tirarMisil = false;	
-					}else if(e.getKeyCode() == KeyEvent.VK_SHIFT) {
-						
-						x -= 10;
-						System.out.println("Acelerando");
-					}
-				}
-			}
-			
-			
-			/**figuritas**/
-			
-			public Rectangle2D suelo(){
-		  	  return new Rectangle2D.Double(0 , 450 , 5000, 100);//declaro las medidas de mi pelotita minecraft
-		  	  
-		    }
-			
-			
-			protected int pos = posAve;
-			 
-			public Rectangle2D bomba(){
-				
-			  	  return new Rectangle2D.Double(200 -x, pos, 50, 50);//declaro las medidas de mi pelotita minecraft
-			  	  
-			    }
-			public Rectangle2D bomba(int x){
-				
-			  	  return new Rectangle2D.Double(440 -x, pos, 50, 50);//declaro las medidas de mi pelotita minecraft
-			  	  
-			    }
-			
-			protected void dibujaBomba() {
-				
-				nivel2.bomba(nivel2.posAve);//crea un rectangulo
-				
-			}
-		}
-	 
-	   private class Hilo2 extends Thread{
-			
-			public Hilo2(){}
-			
-			public void run() {
-			  while(true) {
-				try {
-					
-					Thread.sleep(10);
-					
-					if(nivel2.x < (-5000 + (1920/2))) {
-						
-					     Principal.vent.nivel2.setVisible(false);
-					     
-					     Principal.vent.AjustesGeneral.setVisible(true);
-					     
-					     System.err.println("Juego acabado con exito!!");
-					     
-					     nivel2.x = 0;
-					     
-					     //nivel2.actuaizar();
-					     
-                         cn.stop();
-						 
-						 cAve.stop();
-					}
-					
-					nivel2.x-= 1;
-					
-					//nivel2.pos ++;//caida de la bomba
-					
-					//nivel2.x += 5;
-					nivel2.vertical +=2;
-					
-					nivel2.setBounds(nivel2.x,0,5000,520);
-					
-					//nivel2.repaint();
-					
-                    //System.out.println("Pixel " + nivel2.x);
-					
-				}catch(Exception e) { System.out.println("No funcioan");}
-			  }
-			}
-		}
-	   
-	   private class Hilo2Ave extends Thread{
-			
-			public Hilo2Ave(){}
-			
-			public void run() {
-			  while(true) {
-				try {
-					
-					Thread.sleep(1);
-					
-					//nivel2.actuaizar();
-					
-					nivel2.repaint();
-					
-					if(nivel2.posAve <= 0) { nivel2.posAve +=4;}
-					if(nivel2.posAve >= 320) { nivel2.posAve -=4;}
-					
-                  // System.out.println("vaaa Ave");
-					
-				}catch(Exception e) { System.out.println("No funcioan");}
-			  }
-			}
-	   }
 }
 
 /**CLASE QUE LLAMA AL ARCHIVO**/

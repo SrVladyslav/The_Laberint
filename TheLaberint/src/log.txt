@@ -1,5 +1,0 @@
-uno dos tres cuatro cinco
-player1 4321 tres cuatro cinco
-player2 1234 tres cuatro cinco
-uno dos tres cuatro cinco
-uno dos tres cuatro cinco

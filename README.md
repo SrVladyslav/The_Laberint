@@ -1,11 +1,13 @@
 # The_Laberint
-Laberint game using Java swing 
 
-# Packaging using Maven 
-Maven helps to package the project. Also helps to compile and run fast using simple commands.
-When I started working on this project it was hard to compile and adding maven into it made it so easy.
+A labyrinth based game using Java Swing 
+
+### Build the .jar
+
+`$ ant jarfile`
+
+`.jar` can be found at the `/build/` directory
 
 
-HOW TO BUILD :
 
-mvn clean package
+

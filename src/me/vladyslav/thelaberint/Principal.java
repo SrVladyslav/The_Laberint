@@ -1,5 +1,8 @@
 package me.vladyslav.thelaberint;
 
+import me.vladyslav.thelaberint.sfx.Sound;
+import me.vladyslav.thelaberint.utils.SaveManager;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -20,11 +23,9 @@ import java.io.BufferedWriter;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.Socket;
 import javax.imageio.ImageIO;
 import javax.swing.AbstractAction;
@@ -60,7 +61,7 @@ public class Principal {
     protected static Ventana vent;
     protected static String[][] jugadors;
     protected static int numJugadores;
-    //protected static Player audio;
+    protected static Sound sound;
 
     public static void main(String[] args) {
 
@@ -118,15 +119,13 @@ public class Principal {
                 i++;
             }
             System.out.println(jugadors[2][4]);
-            /**audio**/
-            InputStream in = new FileInputStream("resources/sfx/SAW.wav");
-            //audio = new Player(in);
+            /**sound**/
+            sound = new Sound("/resources/sound/SAW.wav");
             /**escritura archivos**/
             //fw = new FileWriter("resources/log.txt");
             //bw = new BufferedWriter(fw);
             //bw.write("Hola");
         } catch (IOException e) {
-            System.err.println("No se puede sacar el archivo");
             System.out.println(e.getMessage() + e.getLocalizedMessage());
         }
     }
@@ -149,8 +148,11 @@ class Ventana extends JFrame {
     private static boolean comenzar = true;
     private static int posJugX, posJugY;//player position
     private int posDibX, posDibY;//posicion del recorrido para dibujar
+
+    // INITIAL COORDS
     private int posIniPX = 1;
     private int posIniPY = 5;
+
     private int posPanRegX = 20, posPanRegY = 140, dimAlReg = 290, dimAnReg = 324;//dimensiones del registro // 20 140 290  324
     ImageIcon iconoCursor1 = new ImageIcon("resources/img/cursor1.png");//imagen del cursor
     private ImageIcon imgCuenta;
@@ -188,7 +190,6 @@ class Ventana extends JFrame {
     private int ContadorMin = 0, ContadorSeg = 0, ContadorHora;
     private int x1 = 50, y1 = -100;//posicion inicial del panel
     private static String mensajito = "";
-
 
     /**
      * Player class
@@ -385,7 +386,20 @@ class Ventana extends JFrame {
         public void actionPerformed(ActionEvent e) {
             Object botonPulsado = e.getSource();
             if (botonPulsado.equals(iniciar)) {
+
+                if (SaveManager.checkSave()) {
+
+                    String save = SaveManager.load();
+
+                    String[] coords = save.split(",");
+
+                    posIniPX = Integer.parseInt(coords[0]);
+                    posIniPY = Integer.parseInt(coords[1]);
+
+                }
+
                 comenzar = true;
+
                 menu.setVisible(false);
 
                 juego.setVisible(true);
@@ -400,11 +414,8 @@ class Ventana extends JFrame {
 
                 AjustesGeneral.setVisible(false);
 
-                posIniPX = 1;
-
-                posIniPY = 5;
-
-//                    Principal.audio.play();
+                Principal.sound.loopIndef();
+                Principal.sound.play(true);
 
             } else if (botonPulsado.equals(record)) {
 
@@ -445,7 +456,7 @@ class Ventana extends JFrame {
 
                 runThread = false; //desactivo el contador
 
-                // Principal.audio.close();
+                Principal.sound.stop();
 
             } else if (botonPulsado.equals(volver1)) {
 
@@ -455,7 +466,8 @@ class Ventana extends JFrame {
             if (botonPulsado.equals(guardar)) {
                 /**TODO guadado de la partida actual**/
                 System.out.println("Juego guardado");
-				
+
+                SaveManager.save(String.valueOf(posIniPX) + "," + String.valueOf(posIniPY));
 				/*hilo = new Contador1(Contador);
 				
 				hilo.start();
@@ -711,31 +723,31 @@ class Ventana extends JFrame {
 
         try {
 
-            iconoJuego = ImageIO.read(new File("resources/img/portada.png"));//icono nuevo del juego
+            iconoJuego = ImageIO.read(new File("./resources/img/portada.png"));//icono nuevo del juego
 
-            //icono = ImageIO.read(new File("resources/suerte.png"));//icono antiguo del juego
+            icono = ImageIO.read(new File("./resources/suerte.png"));//icono antiguo del juego
 
-            imgCuenta = new ImageIcon("resources/img/cursores/cuenta.png");//icono antiguo del juego
+            imgCuenta = new ImageIcon("./resources/img/cursores/cuenta.png");//icono antiguo del juego
 
-            laberinto = ImageIO.read(new File("resources/img/laberinto.png"));
+            laberinto = ImageIO.read(new File("./resources/img/laberinto.png"));
 
-            Rojo = ImageIO.read(new File("resources/img/Rojo.png"));
+            Rojo = ImageIO.read(new File("./resources/img/Rojo.png"));
 
-            Azul = ImageIO.read(new File("resources/img/Azul.png"));
+            Azul = ImageIO.read(new File("./resources/img/Azul.png"));
 
-            Cyan = ImageIO.read(new File("resources/img/Cyan.png"));
+            Cyan = ImageIO.read(new File("./resources/img/Cyan.png"));
 
-            Gris = ImageIO.read(new File("resources/img/Gris.png"));
+            Gris = ImageIO.read(new File("./resources/img/Gris.png"));
 
-            skinDiablo1 = ImageIO.read(new File("resources/img/diablo1.png"));
+            skinDiablo1 = ImageIO.read(new File("./resources/img/diablo1.png"));
 
-            cursorXD = ImageIO.read(new File("resources/img/cursor1.png"));
+            cursorXD = ImageIO.read(new File("./resources/img/cursor1.png"));
 
-            iconoRegistrar = new ImageIcon("resources/img/love.png");
+            iconoRegistrar = new ImageIcon("./resources/img/love.png");
 
-            luna = new ImageIcon("resources/img/luna.png");
+            luna = new ImageIcon("./resources/img/luna.png");
 
-            cursorInvisible = ImageIO.read(new File("resources/img/cursores/0.png"));
+            cursorInvisible = ImageIO.read(new File("./resources/img/cursores/0.png"));
 
             cursorporDefecto = config.createCustomCursor(cursorXD, new Point(0, 0), "xd");
 
@@ -744,6 +756,7 @@ class Ventana extends JFrame {
         } catch (IOException e) {
 
             System.err.println("No se encontro la imagen");
+            System.out.println(e);
         }
 
         System.out.println(PantallaDimAlto + "   " + PantallaDimAncho);
@@ -754,7 +767,7 @@ class Ventana extends JFrame {
 
         setResizable(false);
 
-        setTitle("Juego - Beta Version");
+        setTitle("Juego - Alpha Version");
 
         setLayout(null);
 
@@ -1883,14 +1896,15 @@ class Ventana extends JFrame {
 
             try {
 
-                copa = ImageIO.read(new File(" resources/img/copa.png"));
+                copa = ImageIO.read(new File("./resources/img/copa.png"));
 
-                laberinto = ImageIO.read(new File(" resources/img/laberinto.png"));
+                laberinto = ImageIO.read(new File("./resources/img/laberinto.png"));
 
             } catch (IOException e) {
 
                 System.err.println("No se encontro la imagen");
             }
+
             Graphics2D g = (Graphics2D) g1;
 
             Font titulo = new Font("Impact", Font.BOLD, 60);
@@ -1942,32 +1956,6 @@ class Ventana extends JFrame {
         }
 
     }
-}
-
-/**
- * CLASE QUE LLAMA AL ARCHIVO
- **/
-class Archivo {
-
-    File file;
-
-    public Archivo() {
-        try {
-
-            System.out.println("HERE: " + new File(".").getAbsoluteFile());
-
-            FileReader fr = new FileReader("/ resources/lab1.txt");
-
-        } catch (IOException e) {
-
-            System.out.println("HERE: " + new File(".").getAbsoluteFile());
-
-            System.err.println("No se puede sacar el archivo");
-        }
-
-    }
-
-
 }
 
 class Info extends JPanel {

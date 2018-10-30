@@ -28,6 +28,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.Socket;
 import javax.imageio.ImageIO;
+import java.util.Random;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Icon;
@@ -40,14 +41,14 @@ import javax.swing.JTextArea;
 
 public class Principal {
 
-    private static FileReader fr, login;
+    private static FileReader login;
     protected static FileWriter fw;
     protected static BufferedWriter bw;
     protected static BufferedReader log;
-    private static String campo;
     protected static char[][] camp;
-    protected static final int DIM_TABLON_JUEGO_X = 22;//11
-    protected static final int DIM_TABLON_JUEGO_Y = 46;//23
+    // Las dimensiones del laberinto deben ser números impares. -- JHV
+    protected static final int DIM_TABLON_JUEGO_X = 21;//11
+    protected static final int DIM_TABLON_JUEGO_Y = 43;//22
     protected static final Color COLOR_ROJO = new Color(197, 9, 9);
     protected static final Color COLOR_AZUL = new Color(25, 25, 224);
     protected static final Color COLOR_CYAN = Color.CYAN;
@@ -68,20 +69,10 @@ public class Principal {
         vent = new Ventana();
         //**read archives**//
         try {
-            fr = new FileReader("resources/lab1.txt");
             login = new FileReader("resources/log.txt");
-            BufferedReader br = new BufferedReader(fr);
             BufferedReader log = new BufferedReader(login);
-            int i = 0;
-            camp = new char[DIM_TABLON_JUEGO_X][DIM_TABLON_JUEGO_Y];
-            while ((campo = br.readLine()) != null) {
-                //System.out.println(""+ campo);
-                char[] linia = campo.toCharArray();
-                for (int j = 0; j < linia.length; j++) {
-                    camp[i][j] = linia[j];
-                }
-                i++;
-            }
+            Laberinto laberinto = new Laberinto(DIM_TABLON_JUEGO_X, DIM_TABLON_JUEGO_Y);
+            camp = laberinto.crear();
             System.out.println();
             System.out.println();
             for (int k = 0; k < DIM_TABLON_JUEGO_X; k++) {
@@ -104,7 +95,7 @@ public class Principal {
              as daasd asd s s
              sd asd asd asd asd
              asd asd asd as dasd*/
-            i = 0;
+            int i = 0;
             while ((jugs = log.readLine()) != null) {//no entra al bucle por algo
                 String[] j = jugs.split(" ");
                 System.out.println(i);
@@ -129,7 +120,60 @@ public class Principal {
             System.out.println(e.getMessage() + e.getLocalizedMessage());
         }
     }
+
+
 }//fin listener teclado	
+
+
+class Laberinto {
+    private int direcciónes[][] = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+    private Random random = new Random();
+    private int dimX;
+    private int dimY;
+
+    public Laberinto(int dimX, int dimY) {
+        this.dimX = dimX;
+        this.dimY = dimY;
+    }
+
+    public  char[][] crear() {
+        char[][] laberinto = new char[dimX][dimY];
+        for (int x = 0; x < dimX; x++) {
+            for (int y = 0; y < dimY; y++) {
+                laberinto[x][y] = '1';
+            }
+        }
+
+        laberinto[1][1] = '0';
+        esculpir(1, 1, laberinto);
+
+        return laberinto;
+    }
+
+    private void esculpir(int cx, int cy, char[][] laberinto) {
+        barajar();
+
+        for (int[] direcion : direcciónes) {
+            int nx = cx + direcion[0] * 2;
+            int ny = cy + direcion[1] * 2;
+            if (nx > 0 && nx < dimX && ny > 0 && ny < dimY && laberinto[nx][ny] == '1') {
+                laberinto[cx + direcion[0]][cy + direcion[1]] = '0';
+                laberinto[nx][ny] = '0';
+                esculpir(nx, ny, laberinto);
+            }
+        }
+    }
+
+    private void barajar() {
+
+    for (int i = 0; i < direcciónes.length; i++) {
+            int pos = random.nextInt(direcciónes.length);
+            int[] temp = direcciónes[i];
+            direcciónes[i] = direcciónes[pos];
+            direcciónes[pos] = temp;
+        }
+    }
+}
 
 //fin principal
 class Ventana extends JFrame {
@@ -1661,16 +1705,16 @@ class Ventana extends JFrame {
             g.setColor(Color.red);
             //960 y 460  ---- x = 20 && y =11
             //dibujo columnas
-            for (int l = 1; l < 46; l++) {//96<48<24
+            for (int l = 1; l < 45; l++) {//96<48<24
 
-                g.drawRect(l * 20 + 20, 0, 1, PantallaDimAlto / 2 - 80);
+               g.drawRect(l * 20 + 20, 0, 1, PantallaDimAlto / 2 - 120);
 
             }
             //dibujo filas
 
             for (int k = 0; k < 24; k++) {//int k = 0; k < 12; k++
 
-                g.drawRect(40, k * 20, PantallaDimAlto - (139 * 2) + 77,
+                g.drawRect(40, k * 20, PantallaDimAlto - (139 * 2) + 57,
                         1);//original  g.drawRect(40, k * 40, PantallaDimAlto - (139*2) + 77, 1);
             }
             /**RELLENO EL CAMPO**/

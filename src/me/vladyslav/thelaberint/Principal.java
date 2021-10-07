@@ -38,6 +38,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
+import javax.swing.JOptionPane;
 
 public class Principal {
 
@@ -117,16 +118,16 @@ public class Principal {
             //bw = new BufferedWriter(fw);
             //bw.write("Hola");
         } catch (IOException e) {
-            System.out.println(e.getMessage() + e.getLocalizedMessage());
+            String mensaje = e.getMessage() + e.getLocalizedMessage();
+            System.err.println(mensaje);
+            JOptionPane.showMessageDialog(null, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-
-}//fin listener teclado	
+}
 
 
 class Laberinto {
-    private int direcciónes[][] = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
+    private int direcciones[][] = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
     private Random random = new Random();
     private int dimX;
     private int dimY;
@@ -153,7 +154,7 @@ class Laberinto {
     private void esculpir(int cx, int cy, char[][] laberinto) {
         barajar();
 
-        for (int[] direcion : direcciónes) {
+        for (int[] direcion : direcciones) {
             int nx = cx + direcion[0] * 2;
             int ny = cy + direcion[1] * 2;
             if (nx > 0 && nx < dimX && ny > 0 && ny < dimY && laberinto[nx][ny] == '1') {
@@ -166,11 +167,11 @@ class Laberinto {
 
     private void barajar() {
 
-    for (int i = 0; i < direcciónes.length; i++) {
-            int pos = random.nextInt(direcciónes.length);
-            int[] temp = direcciónes[i];
-            direcciónes[i] = direcciónes[pos];
-            direcciónes[pos] = temp;
+    for (int i = 0; i < direcciones.length; i++) {
+            int pos = random.nextInt(direcciones.length);
+            int[] temp = direcciones[i];
+            direcciones[i] = direcciones[pos];
+            direcciones[pos] = temp;
         }
     }
 }
@@ -198,7 +199,7 @@ class Ventana extends JFrame {
     private int posIniPY = 5;
 
     private int posPanRegX = 20, posPanRegY = 140, dimAlReg = 290, dimAnReg = 324;//dimensiones del registro // 20 140 290  324
-    ImageIcon iconoCursor1 = new ImageIcon("resources/img/cursor1.png");//imagen del cursor
+    private ImageIcon iconoCursor1 = new ImageIcon("resources/img/cursor1.png");//imagen del cursor
     private ImageIcon imgCuenta;
     private Cursor cursorporDefecto, cursorPD2;//cursor en la pagina por defecto
     private Botones botones;
@@ -668,8 +669,9 @@ class Ventana extends JFrame {
                 }
 
             } catch (Exception s) {
-                System.out.println("Exception happened ");
+                System.out.println("Exception happened: " + s);
                 s.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error: " + s.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -751,7 +753,7 @@ class Ventana extends JFrame {
 
                 } catch (Exception e) {
 
-                    System.out.println("No funciona el thread");
+                    System.err.println("No funciona el thread");
 
                 }
             }
